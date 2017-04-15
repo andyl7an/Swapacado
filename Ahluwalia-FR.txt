@@ -1,0 +1,7 @@
+Aalok Ahluwalia
+The system shall search for trade offers being posted near you and launch push notifications to notify you of recommended trades.
+The system shall implement a rating system and display this information along a user profile.
+The system shall require users to post a photo of their student ids before trading.
+The system shall implement a search bar that allows buyers and sellers to filter posts.
+Allows buyersw and sellers to filter post
+The system shall have payment APIs built in to facilitate seamless trades.
