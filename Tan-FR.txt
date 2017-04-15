@@ -1,0 +1,5 @@
+The system shall upload the user’s PolyCard.
+The system shall locate nearby users.
+The system shall track the user’s location.
+The system shall store a new user’s name.
+The system shall set a transaction location.
