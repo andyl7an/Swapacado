@@ -1,0 +1,3 @@
+The system shall provide a price range of the goods being swapped.
+The system shall provide option to trade goods.
+The system shall provide location of each users.
