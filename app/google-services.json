@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "637598303222",
+    "firebase_url": "https://swapacadoauth.firebaseio.com",
+    "project_id": "swapacadoauth",
+    "storage_bucket": "swapacadoauth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637598303222:android:ddf6f4a5ab05566c",
+        "android_client_info": {
+          "package_name": "com.cpe307.swapacado.swapacado"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "637598303222-rnhdvtavbelolbu30e0lvae9ecmcq33r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cpe307.swapacado.swapacado",
+            "certificate_hash": "0b46c8f64006dc71325af133775f1861b3e18393"
+          }
+        },
+        {
+          "client_id": "637598303222-vd47s8vn10irm84u5lr7mku64p8d3mln.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoiJPFMJa-Sk-fRJvAsplkR44FNyjKzAk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "637598303222-vd47s8vn10irm84u5lr7mku64p8d3mln.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
