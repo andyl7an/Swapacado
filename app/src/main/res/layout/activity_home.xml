@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_home"
@@ -8,6 +9,81 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.cpe307.swapacado.swapacado.HomeActivity">
+    tools:context="com.cpe307.swapacado.swapacado.HomeActivity"
+    >
+
+    <!-- Encapsulate the title and New Post Button and the Messages Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/homeHeader"
+        >
+        <!--We will adjust the dimensions of the plus dynamically in the on create-->
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/plus"
+            android:id="@+id/plusButton"
+            />
+        <!--Later lets replace this with an image of Swapacado-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="Swapacado"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:id="@+id/homeTitle"
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/message"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/homeHeader"
+        >
+
+        <CheckBox
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="They Have What I Want"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:layout_weight="1"
+            />
+        <CheckBox
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I Have What They Want"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            />
+    </LinearLayout>
+
+    <!-- Filter posts by things i have -->
+    <!-- Filters posts by things i am currently looking for -->
+
+    <!-- Inifinite scroll on posts will go here -->
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+
+    <fragment
+        android:name="com.cpe307.swapacado.swapacado.MenuBarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_menu_bar"
+        android:layout_alignParentBottom="true"
+        />
 
 </RelativeLayout>

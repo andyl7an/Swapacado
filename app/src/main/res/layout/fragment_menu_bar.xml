@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cpe307.swapacado.swapacado.MenuBarFragment"
+    android:orientation="horizontal"
+    android:gravity="bottom"
+    >
+
+    <!-- TODO: Change these to icons instead of textviews!!!-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home\nHome\nHome"
+        android:layout_weight="1"
+        android:id="@+id/homeMenuBar"
+        android:onClick="goHome"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Map\nMap\nMap"
+        android:layout_weight="1"
+        android:id="@+id/mapMenuBar"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search\nSearch\nSearch"
+        android:layout_weight="1"
+        android:id="@+id/searchMenuBar"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile\nProfile\nProfile"
+        android:layout_weight="1"
+        android:id="@+id/postMenuBar"
+        />
+
+</LinearLayout>
