@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.cpe307.swapacado.swapacado.ProfileActivity"
+    >
+
+    <fragment
+        android:name="com.cpe307.swapacado.swapacado.PageHeaderFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_page_header"
+        android:layout_alignParentTop="true"
+        android:id="@+id/profileHeader"
+        />
+
+    <!-- A picture of the user -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/profilePageImage"
+        android:layout_below="@id/profileHeader"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Loading ..."
+        android:id="@+id/profilePageName"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:textStyle="bold"
+        android:layout_below="@id/profilePageImage"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text= "Trades : loading ..."
+        android:id="@+id/profilePageTradeCount"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:layout_below="@id/profilePageName"
+        />
+
+    <!-- This is for the ratings -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/profilePageTradeCount"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "Rating : "
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            />
+    </LinearLayout>
+
+    <fragment
+        android:name="com.cpe307.swapacado.swapacado.MenuBarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_menu_bar"
+        android:layout_alignParentBottom="true"
+        />
+</RelativeLayout>

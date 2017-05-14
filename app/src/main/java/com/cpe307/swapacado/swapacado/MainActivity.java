@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
         //Intent mapIntent = new Intent(MainActivity.this, MapActivity.class);
         //startActivity(mapIntent);
         Intent homeIntent = new Intent(MainActivity.this, HomeActivity.class);
+        homeIntent.putExtra("uniqueID", ""); // This token will be generated using the value of the login
+        //We should use the UID stored in firebase
         startActivity(homeIntent);
     }
 }

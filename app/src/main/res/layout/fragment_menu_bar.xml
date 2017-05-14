@@ -9,34 +9,29 @@
 
     <!-- TODO: Change these to icons instead of textviews!!!-->
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home\nHome\nHome"
-        android:layout_weight="1"
+        android:background="@drawable/home"
         android:id="@+id/homeMenuBar"
-        android:onClick="goHome"
+
         />
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Map\nMap\nMap"
-        android:layout_weight="1"
+        android:background="@drawable/map"
         android:id="@+id/mapMenuBar"
         />
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search\nSearch\nSearch"
-        android:layout_weight="1"
+        android:background="@drawable/search"
         android:id="@+id/searchMenuBar"
         />
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile\nProfile\nProfile"
-        android:layout_weight="1"
-        android:id="@+id/postMenuBar"
+        android:id="@+id/profileMenuBar"
+        android:background="@drawable/profile"
         />
-
 </LinearLayout>
