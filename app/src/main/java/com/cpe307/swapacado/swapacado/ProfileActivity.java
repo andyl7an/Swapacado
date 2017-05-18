@@ -1,21 +1,24 @@
 package com.cpe307.swapacado.swapacado;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.InputStream;
 import java.net.URL;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    String id;
+    String uniqueID;
 
     private UserAccount getProfileFromUniqueId(String uniqueId) {
         UserAccount user = new UserAccount();
@@ -24,13 +27,47 @@ public class ProfileActivity extends AppCompatActivity {
         user.rating = 3.2;
         return user;
     }
+    private void attachMenuButtonHandlers() {
+        View homeMenuBox = this.findViewById(R.id.homeMenuBar);
+        homeMenuBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //To remove
+                Toast.makeText(getApplicationContext(), "Home was clicked!!!", Toast.LENGTH_SHORT).show();
+                Intent homeIntent = new Intent(ProfileActivity.this, HomeActivity.class);
+                startActivity(homeIntent);
+            }
+        });
+
+        View searchMenuBox = this.findViewById(R.id.searchMenuBar);
+        searchMenuBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Search was clicked!!!", Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+                //intent.putExtra("uniqueID", uniqueID);
+                //startActivity(intent);
+            }
+        });
+
+        View profileMenuBox = this.findViewById(R.id.profileMenuBar);
+        profileMenuBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Post was clicked!!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        attachMenuButtonHandlers();
+
         String uniqueID = this.getIntent().getStringExtra("uniqueID");
-        id = uniqueID;
+        this.uniqueID = uniqueID;
 
         UserAccount currentUser = getProfileFromUniqueId(uniqueID);
 
@@ -50,7 +87,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void setTradeCount() {
         TextView trades = (TextView) findViewById(R.id.profilePageTradeCount);
-        int tradeCount = getTradesById(id);
+        int tradeCount = getTradesById(uniqueID);
         trades.setText("Trades : " + tradeCount);
         if(tradeCount == 0) {
             trades.setText("No Trades!!!");

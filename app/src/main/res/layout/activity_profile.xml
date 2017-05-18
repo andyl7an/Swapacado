@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.cpe307.swapacado.swapacado.ProfileActivity"
     >
 
@@ -61,6 +58,16 @@
             />
     </LinearLayout>
 
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="#ffffff"
+        app:itemTextColor="#ffffff"
+        app:menu="@menu/bottom_navigation_main" />
+<!--
     <fragment
         android:name="com.cpe307.swapacado.swapacado.MenuBarFragment"
         android:layout_width="match_parent"
@@ -68,4 +75,5 @@
         tools:layout="@layout/fragment_menu_bar"
         android:layout_alignParentBottom="true"
         />
+        -->
 </RelativeLayout>
