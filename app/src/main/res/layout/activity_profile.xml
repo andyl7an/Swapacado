@@ -8,21 +8,13 @@
     tools:context="com.cpe307.swapacado.swapacado.ProfileActivity"
     >
 
-    <fragment
-        android:name="com.cpe307.swapacado.swapacado.PageHeaderFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_page_header"
-        android:layout_alignParentTop="true"
-        android:id="@+id/profileHeader"
-        />
-
     <!-- A picture of the user -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/profilePageImage"
-        android:layout_below="@id/profileHeader"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
         />
     <TextView
         android:layout_width="match_parent"
@@ -32,31 +24,55 @@
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
         android:textStyle="bold"
         android:layout_below="@id/profilePageImage"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text= "Trades : loading ..."
-        android:id="@+id/profilePageTradeCount"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:layout_below="@id/profilePageName"
-        />
-
-    <!-- This is for the ratings -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/profilePageTradeCount"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_below="@id/profilePageName"
         >
-
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text = "Rating : "
+            android:text= "Trades : loading ..."
+            android:id="@+id/profilePageTradeCount"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:layout_below="@id/profilePageName"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+
             />
+
+        <!-- This is for the ratings
+        android:layout_weight="1"  for rating bar-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/profilePageTradeCount"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "Rating : "
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                />
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBar"
+                android:stepSize="0.5"
+                />
+        </LinearLayout>
     </LinearLayout>
+
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"

@@ -49,6 +49,7 @@ public class HomeActivity extends AppCompatActivity {
                 uniqueID = "123";
                 intent.putExtra("uniqueID", uniqueID);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -101,6 +102,8 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+//        PostDatabase.init();
+        PostDatabase.refreshAllPosts();
 /*
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {

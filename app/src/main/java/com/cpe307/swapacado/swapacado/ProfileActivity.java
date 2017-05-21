@@ -36,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Home was clicked!!!", Toast.LENGTH_SHORT).show();
                 Intent homeIntent = new Intent(ProfileActivity.this, HomeActivity.class);
                 startActivity(homeIntent);
+                finish();
             }
         });
 
@@ -130,7 +131,8 @@ public class ProfileActivity extends AppCompatActivity {
         @Override
         protected  void onPostExecute(Drawable result) {
             super.onPostExecute(result);
-            ((ImageView) findViewById(R.id.profilePageImage)).setImageDrawable(result);
+            ImageView userImage = (ImageView) findViewById(R.id.profilePageImage);
+            userImage.setImageDrawable(result);
         }
     }
 

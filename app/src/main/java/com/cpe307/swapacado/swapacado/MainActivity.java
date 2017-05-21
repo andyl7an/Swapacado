@@ -22,5 +22,6 @@ public class MainActivity extends AppCompatActivity {
         homeIntent.putExtra("uniqueID", ""); // This token will be generated using the value of the login
         //We should use the UID stored in firebase
         startActivity(homeIntent);
+        finish();
     }
 }
