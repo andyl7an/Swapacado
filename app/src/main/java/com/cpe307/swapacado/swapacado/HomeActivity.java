@@ -3,16 +3,10 @@ package com.cpe307.swapacado.swapacado;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -67,68 +61,34 @@ public class HomeActivity extends AppCompatActivity {
         messageIcon.setLayoutParams(layoutParams);
     }
 
+    private void configureScreen()
+    {
+        View decorView = getWindow().getDecorView();
+        // Hide both the navigation bar and the status bar.
+        // SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
+        // a general rule, you should design your app to hide the status bar whenever you
+        // hide the navigation bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+//        configureScreen();
 
         uniqueID = this.getIntent().getStringExtra("uniqueID");
 
         attachMenuButtonHandlers();
         adjustTitleBar();
 
-        FirebaseDatabase dbInstance = FirebaseDatabase.getInstance();
-        //DatabaseReference database= dbInstance.getReference();
-
-        DatabaseReference myRef = dbInstance.getReference("message");
-//        myRef.setValue("what am i doing???");
-
-        final String TAG = "Ahluwalia";
-
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String value = dataSnapshot.getValue(String.class);
-                String value2 = dataSnapshot.getKey();
-                boolean value3 = dataSnapshot.exists();
-                Log.d(TAG, "Value is: " + value);
-                Log.d(TAG, "Value is: " + value2);
-                Log.d(TAG, "Value is: " + value3);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w(TAG, "Failed to read value.", databaseError.toException());
-
-            }
-        });
-//        PostDatabase.init();
         PostDatabase.refreshAllPosts();
-/*
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d(TAG, "Value is: " + value);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-*/
-        //database.child("allposts").child("TestingFirstPost").setValue("Welcome to storing data on firebase");
-        //database.
-
-
-
-        //PURELY FOR DEVELOPMENT PURPOSES
-        Intent mapIntent = new Intent(HomeActivity.this, MapActivity.class);
-
+        ListView myListView = (ListView) findViewById(R.id.home_listview);
+        myListView.setAdapter(new CustomAdapter(this.getApplicationContext(), new Post[10]));
     }
 }

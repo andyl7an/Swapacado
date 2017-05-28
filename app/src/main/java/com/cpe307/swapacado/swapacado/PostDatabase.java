@@ -34,6 +34,10 @@ public class PostDatabase {
         allPosts.add(samplePost);
         myRef.setValue(allPosts);;
     }
+    public static List <Post> getAllPosts()
+    {
+        return new ArrayList<>(allPosts);
+    }
     public static void refreshAllPosts()
     {
         FirebaseDatabase dbInstance = FirebaseDatabase.getInstance();
