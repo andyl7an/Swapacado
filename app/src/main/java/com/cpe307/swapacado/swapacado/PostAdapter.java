@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 class CustomAdapter extends ArrayAdapter<Post>{
 
@@ -24,14 +25,28 @@ class CustomAdapter extends ArrayAdapter<Post>{
 
 
         Post singlePost = getItem(position);
-        //Name
+
+        String name = singlePost.getName();
+        TextView nameView = (TextView) customView.findViewById(R.id.postCard_name);
+        nameView.setText(name);
+
+        String distanceString = singlePost.getDistanceString();
+        TextView distanceView = (TextView) customView.findViewById(R.id.postCard_distance);
+        distanceView.setText(distanceString);
+
+        String dateString = singlePost.getPostTimeString();
+        TextView dateView = (TextView) customView.findViewById(R.id.postCard_postDate);
+        dateView.setText(dateString);
+
+        String haveString = singlePost.getHaveString();
+        TextView haveView = (TextView) customView.findViewById(R.id.postCard_have);
+        haveView.setText(haveString);
+
+        String wantString = singlePost.getWantString();
+        TextView wantView = (TextView) customView.findViewById(R.id.postCard_want);
+        wantView.setText(wantString);
 
         //Set profile picture of user
-        //set name of user
-        //set distance
-        //Set Post Date and time of user
-        //Set I want
-        //Set I have
         //Show rating
         //Wire contact button
         //Wire Offer button

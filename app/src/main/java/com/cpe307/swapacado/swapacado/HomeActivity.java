@@ -89,6 +89,11 @@ public class HomeActivity extends AppCompatActivity {
         PostDatabase.refreshAllPosts();
 
         ListView myListView = (ListView) findViewById(R.id.home_listview);
-        myListView.setAdapter(new CustomAdapter(this.getApplicationContext(), new Post[10]));
+        Post [] data = new Post[20];
+        for(int ind = 0; ind<data.length; ind++)
+        {
+            data[ind] = new Post();
+        }
+        myListView.setAdapter(new CustomAdapter(this.getApplicationContext(), data));
     }
 }
