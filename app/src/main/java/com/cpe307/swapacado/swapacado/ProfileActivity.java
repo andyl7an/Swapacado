@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +34,6 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //To remove
-                Toast.makeText(getApplicationContext(), "Home was clicked!!!", Toast.LENGTH_SHORT).show();
                 Intent homeIntent = new Intent(ProfileActivity.this, HomeActivity.class);
                 startActivity(homeIntent);
                 finish();
@@ -83,6 +83,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         setTradeCount();
 
+        RatingBar theBar = (RatingBar) this.findViewById(R.id.ratingBar);
+        theBar.setRating(getUserRating());
+        theBar.setIsIndicator(true);
+
 
     }
 
@@ -110,6 +114,11 @@ public class ProfileActivity extends AppCompatActivity {
 
     private int getTradesById(String id) {
         return (int) (Math.random() * 100);
+    }
+
+    private float getUserRating()
+    {
+        return (float) 2.5;
     }
 
     /**

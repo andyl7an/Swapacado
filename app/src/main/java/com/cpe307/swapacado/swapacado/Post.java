@@ -151,6 +151,40 @@ public class Post {
         privateHave = "I have: " + goods[rand];
         return getHaveString();
     }
+    public boolean matchesSearchQuery(String query)
+    {
+        String searchString = "";
+        if(privateName != null)
+        {
+            searchString += privateName;
+        }
+        if(privateWant != null)
+        {
+            searchString += privateWant;
+        }
+        if(privateHave != null)
+        {
+            searchString += privateHave;
+        }
+        searchString = searchString.toUpperCase();
+        query = query.toUpperCase();
+        return searchString.indexOf(query) != -1;
+    }
+
+    public boolean matchesHaves(String query) {
+        if(privateHave != null)
+        {
+            return privateHave.toUpperCase().indexOf(query.toUpperCase()) != -1;
+        }
+        return false;
+    }
+    public boolean matchesWants(String query) {
+        if(privateWant != null)
+        {
+            return privateWant.toUpperCase().indexOf(query.toUpperCase()) != -1;
+        }
+        return false;
+    }
     /**
      *
      * @return true if poster wants the objects, false if poster has objects
