@@ -6,7 +6,18 @@
     android:layout_height="match_parent"
     tools:context="com.cpe307.swapacado.swapacado.NewPostActivity"
     android:orientation="vertical"
+    android:layout_marginTop="16dp"
+    android:layout_marginLeft="16dp"
     >
+    <!--Header for the new post Page-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        >
+
+    </LinearLayout>
     <!--Have row-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,13 +27,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="I have: "
+            android:text="I Have: "
+            android:textSize="32sp"
             />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text = ""
-            android:id="@+id/newPost_have"
+            android:id="@+id/newPost_haveEditText"
             />
     </LinearLayout>
 
@@ -31,26 +43,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="16dp"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text ="I want:"/>
+            android:text ="I want: "
+            android:textSize="32sp"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = ""
+            android:id="@+id/newPost_wantEditText"
+            />
     </LinearLayout>
 
-    <!--Custom post-->
+    <!--Custom post Preview-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:id="@+id/newPost_customRowInjectionLocation"
         >
+
     </LinearLayout>
 
     <!--Post button-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post"
+            android:textAllCaps="false"
+            />
     </LinearLayout>
 
 </LinearLayout>
