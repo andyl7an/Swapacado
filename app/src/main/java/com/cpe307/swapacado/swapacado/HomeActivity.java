@@ -50,6 +50,20 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    private void attachTopButtonHandlers()
+    {
+        View newPostButton = this.findViewById(R.id.plusButton);
+        newPostButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, NewPostActivity.class);
+                uniqueID = "123";
+                intent.putExtra("uniqueID", uniqueID);
+                startActivity(intent);
+            }
+        });
+    }
+
     private void adjustTitleBar() {
         View title = this.findViewById(R.id.homeTitle);
         View plus = this.findViewById(R.id.plusButton);
@@ -87,7 +101,7 @@ public class HomeActivity extends AppCompatActivity {
 
         attachMenuButtonHandlers();
         adjustTitleBar();
-
+        attachTopButtonHandlers();
         PostDatabase.refreshAllPosts();
 
         ListView myListView = (ListView) findViewById(R.id.home_listview);
@@ -115,6 +129,7 @@ public class HomeActivity extends AppCompatActivity {
                 filtered.add(aPost);
             }
         }
+
         Post [] filteredArray = filtered.toArray(new Post[filtered.size()]);
         ListView myListView = (ListView) findViewById(R.id.home_listview);
         myListView.setAdapter(new CustomAdapter(this.getApplicationContext(), filteredArray));
