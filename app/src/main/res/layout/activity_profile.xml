@@ -10,6 +10,7 @@
 
     <!-- A picture of the user -->
     <ImageView
+        android:paddingTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/profilePageImage"
@@ -83,15 +84,8 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="2"
             >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text = "\nRating : "
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-                />
-
             <RatingBar
+                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/ratingBar"

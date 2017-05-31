@@ -3,7 +3,6 @@ package com.cpe307.swapacado.swapacado;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -98,7 +97,7 @@ public class HomeActivity extends AppCompatActivity {
     //Should change the list adapter according to what is in the
     private void filterByWhatIWant()
     {
-        String [] wants = getHaves();
+        String [] wants = getWants();
         Post [] currentPosts = getPosts();
         ArrayList<Post> filtered = new ArrayList<Post>();
         for(Post aPost : currentPosts)
@@ -125,7 +124,7 @@ public class HomeActivity extends AppCompatActivity {
         Post [] data = new Post[50];
         for(int ind = 0; ind<data.length; ind++)
         {
-            data[ind] = new Post();
+            data[ind] = Post.createPost("PosterId", true,"I want", "I have");
         }
         return data;
     }
@@ -152,63 +151,20 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
         Post [] filteredArray = filtered.toArray(new Post[filtered.size()]);
-        Log.d("Ahluwalia", "TESTNG" + filteredArray.length);
         ListView myListView = (ListView) findViewById(R.id.home_listview);
         myListView.setAdapter(new CustomAdapter(this.getApplicationContext(), filteredArray));
 
     }
 
-    public void filterByWhatIHaveAndWant()
-    {
-        String [] haves = getHaves();
-        String [] wants = getWants();
-        String [] concat = new String [wants.length + haves.length];
-        for(int ind = 0; ind < haves.length; ind++)
-        {
-            concat[ind] = haves[ind];
-        }
+    //getHaves and getWants need to be linked to the posts that the user currently has up
+    //will dynamically look at them to create these two lists
 
-        for(int ind = 0; ind < wants.length; ind++)
-        {
-            concat[haves.length + ind] = wants[ind];
-        }
-
-        addIfMatchesConditionsInArray(haves);
-    }
-
-    //
-    private void addIfMatchesConditionsInArray(String [] conditions)
-    {
-        Post [] currentPosts = getPosts();
-        ArrayList<Post> filtered = new ArrayList<Post>();
-        for(Post aPost : currentPosts)
-        {
-            boolean canAdd = false;
-            for(String query : conditions)
-            {
-                if(!canAdd)
-                {
-                    canAdd = aPost.matchesSearchQuery(query);
-                }
-            }
-            if(canAdd)
-            {
-                filtered.add(aPost);
-            }
-        }
-
-        Post [] filteredArray = filtered.toArray(new Post[filtered.size()]);
-        Log.d("Ahluwalia", "TESTNG" + filteredArray.length);
-        ListView myListView = (ListView) findViewById(R.id.home_listview);
-        myListView.setAdapter(new CustomAdapter(this.getApplicationContext(), filteredArray));
-    }
-
-    //Get a string array of items that the user wants
-    //Currently is a stub method
+    //List of strings that the user HAS and wants to trade away
     private String[] getHaves() {
         return new String []{"Chips", "Wine", "Coke"};
     }
-    //Stub method, need to fuilly implement later
+
+    //List of strings that the other person has BUT USER WANTS
     private String[] getWants() {
         return new String [] {"Eggs", "Milk", "Cereal"};
     }
@@ -223,9 +179,38 @@ public class HomeActivity extends AppCompatActivity {
     }
     public void filterPerfectTrades()
     {
-        Post [] posts = getPosts();
+        Post [] currentPosts = getPosts();
         ArrayList<Post> filtered = new ArrayList<>();
-        //TODO
+
+        String [] haves = getHaves();
+        String [] wants = getWants();
+        for(Post aPost : currentPosts)
+        {
+            boolean canAddHave = false;
+            boolean canAddWant = false;
+            for(String query : haves)
+            {
+                if(!canAddHave)
+                {
+                    canAddHave = aPost.matchesWants(query);
+                }
+            }
+            for(String query : wants)
+            {
+                if(!canAddWant)
+                {
+                    canAddWant  = aPost.matchesHaves(query);
+                }
+            }
+            if(canAddHave && canAddWant)
+            {
+                filtered.add(aPost);
+            }
+        }
+
+        Post [] filteredArray = filtered.toArray(new Post[filtered.size()]);
+        ListView myListView = (ListView) findViewById(R.id.home_listview);
+        myListView.setAdapter(new CustomAdapter(this.getApplicationContext(), filteredArray));
     }
 
     private void checkboxWork() {

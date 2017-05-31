@@ -41,7 +41,18 @@ public class Post {
         p.wantString = wantString;
         p.hasString = hasString;
         p.epochTime = System.currentTimeMillis() / 1000;
+
+        p.populateHiddenVariables();
         return p;
+    }
+
+    //A method to set the private variables for the program
+    private void populateHiddenVariables() {
+        getName();
+        getDistanceString();
+        getHaveString();
+        getWantString();
+        getPostTimeString();
     }
 
     //Stub method returning dummy data
