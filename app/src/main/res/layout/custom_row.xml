@@ -79,13 +79,16 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chat"
+        android:text="Contact"
         android:layout_marginBottom="40dp"
+        android:id="@+id/postCard_contact"
         />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Swap"/>
+        android:text="Swap"
+        android:id="@+id/postCard_swap"
+        />
     </LinearLayout>
     <!--Holds contact and make an swap button-->
 
