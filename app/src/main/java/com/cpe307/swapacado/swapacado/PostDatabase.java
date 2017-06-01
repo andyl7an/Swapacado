@@ -38,6 +38,15 @@ public class PostDatabase {
     {
         return new ArrayList<>(allPosts);
     }
+    public static Post [] getAllPostsDummy(int len)
+    {
+        Post [] arr = new Post[len];
+        for(int ind = 0; ind < len; ind++)
+        {
+            arr[ind] = Post.createPost("", false, "", "");
+        }
+        return arr;
+    }
     public static void refreshAllPosts()
     {
         FirebaseDatabase dbInstance = FirebaseDatabase.getInstance();

@@ -32,7 +32,7 @@ public class NewPostActivity extends AppCompatActivity {
 
         swapButton.setEnabled(false);
         contactButton.setEnabled(false);
-        swapButton.
+//        swapButton.
 
         addLiveUpdatesForBox();
     }
