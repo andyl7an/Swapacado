@@ -21,7 +21,7 @@ public class UserAccount {
      */
     public UserAccount()
     {
-
+        //initialize variables here
     }
 
     /**
