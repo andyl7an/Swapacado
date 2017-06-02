@@ -24,6 +24,8 @@ public class PostDatabase {
     static List<Post> allPosts = new ArrayList<Post> ();
     //Later on implement a final List that keeps tracks of diffs and pushes updates
 
+    static Post [] theDummyPosts = null;
+
     public static void init()
     {
         FirebaseDatabase dbInstance = FirebaseDatabase.getInstance();
@@ -38,14 +40,17 @@ public class PostDatabase {
     {
         return new ArrayList<>(allPosts);
     }
-    public static Post [] getAllPostsDummy(int len)
+    public static Post [] getAllPostsDummy()
     {
-        Post [] arr = new Post[len];
-        for(int ind = 0; ind < len; ind++)
+        if(theDummyPosts == null)
         {
-            arr[ind] = Post.createPost("", false, "", "");
+            theDummyPosts = new Post[65];
+            for(int ind = 0; ind < theDummyPosts.length; ind++)
+            {
+                theDummyPosts[ind] = Post.createPost("",false,"","");
+            }
         }
-        return arr;
+        return theDummyPosts;
     }
     public static void refreshAllPosts()
     {

@@ -136,12 +136,13 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private Post[] getPosts() {
-        Post [] data = new Post[50];
-        for(int ind = 0; ind<data.length; ind++)
-        {
-            data[ind] = Post.createPost("PosterId", true,"I want", "I have");
-        }
-        return data;
+        return  PostDatabase.getAllPostsDummy();
+//        Post [] data = new Post[50];
+//        for(int ind = 0; ind<data.length; ind++)
+//        {
+//            data[ind] = Post.createPost("PosterId", true,"I want", "I have");
+//        }
+//        return data;
     }
 
     //Display in list view only people asking for things i have

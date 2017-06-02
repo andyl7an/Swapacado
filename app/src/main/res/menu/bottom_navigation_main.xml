@@ -4,20 +4,20 @@
     <item
         android:id="@+id/homeMenuBar"
         android:enabled="true"
-        android:icon="@drawable/home"
+        android:icon="@drawable/house_icon"
         android:title="Home"
         app:showAsAction="ifRoom"
         />
     <item
         android:id="@+id/searchMenuBar"
         android:enabled="true"
-        android:icon="@drawable/search"
+        android:icon="@drawable/very_basic_search_icon"
         android:title="Search"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/profileMenuBar"
         android:enabled="true"
-        android:icon="@drawable/profile"
+        android:icon="@drawable/user_512_icon"
         android:title="My Profile"
         app:showAsAction="ifRoom" />
 </menu>

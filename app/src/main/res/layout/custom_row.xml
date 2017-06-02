@@ -82,12 +82,14 @@
         android:text="Contact"
         android:layout_marginBottom="40dp"
         android:id="@+id/postCard_contact"
+        android:textAllCaps="false"
         />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Swap"
         android:id="@+id/postCard_swap"
+        android:textAllCaps="false"
         />
     </LinearLayout>
     <!--Holds contact and make an swap button-->
