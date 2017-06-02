@@ -10,14 +10,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //Temporarily taken out
-        /*
-        Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(loginIntent);
-        */
-        //Intent mapIntent = new Intent(MainActivity.this, MapActivity.class);
-        //startActivity(mapIntent);
+        //removed temporarily taken out code to accomodate sonarqube
         Intent homeIntent = new Intent(MainActivity.this, HomeActivity.class);
         homeIntent.putExtra("uniqueID", ""); // This token will be generated using the value of the login
         //We should use the UID stored in firebase

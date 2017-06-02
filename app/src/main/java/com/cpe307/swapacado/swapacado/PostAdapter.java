@@ -14,9 +14,6 @@ import android.widget.TextView;
 
 class CustomAdapter extends ArrayAdapter<Post>{
 
-
-    private View theActualView;
-
     public CustomAdapter(Context context, Post [] posts) {
         super(context, R.layout.custom_row ,posts);
     }
@@ -24,6 +21,7 @@ class CustomAdapter extends ArrayAdapter<Post>{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater myInflater = LayoutInflater.from(this.getContext());
+        View theActualView;
         theActualView = myInflater.inflate(R.layout.custom_row, parent, false);
 
 
@@ -33,7 +31,6 @@ class CustomAdapter extends ArrayAdapter<Post>{
         TextView nameView = (TextView) theActualView.findViewById(R.id.postCard_name);
         nameView.setText(name);
 
-        String faceURL = singlePost.getFaceURL();
         ImageView faceLocation = (ImageView) theActualView.findViewById(R.id.postCard_egg);
         faceLocation.setImageResource(singlePost.getFaceRID());
 

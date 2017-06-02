@@ -52,25 +52,29 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
+    private static final int ADDRESS = 0;
+    private static final String[] PROJECTION = {
+            ContactsContract.CommonDataKinds.Email.ADDRESS,
+            ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
+    };
 
     /**
      * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
      */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
+    static final String[] DUMMY_CREDENTIALS = new String[]{
+            "foo@example.com:hello", "bar@example.com:world"
+    };
 
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-
+    public static final String TAG = "Swapacado";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +108,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mProgressView = findViewById(R.id.login_progress);
 
         //Firebase
+
         mAuth = FirebaseAuth.getInstance();
         mAuth.signOut(); // Force a sign out
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -111,7 +116,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                final String TAG = "Swapacado";
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
@@ -180,10 +184,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_READ_CONTACTS) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                populateAutoComplete();
-            }
+        if (requestCode == REQUEST_READ_CONTACTS && grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            populateAutoComplete();
         }
     }
 
@@ -240,11 +242,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            final String TAG = "Swapacado";
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "createUserWithEmail:success");
-                                FirebaseUser user = mAuth.getCurrentUser();
                                 showProgress(false);
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -261,7 +261,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        final String TAG = "Swapacado";
                         Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
 
                         // If sign in fails, display a message to the user. If sign in succeeds
@@ -279,12 +278,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
+        //Replace this with your own logic
         return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
+        //Replace this with your own logic
         return password.length() > 4;
     }
 
@@ -329,7 +328,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         return new CursorLoader(this,
                 // Retrieve data rows for the device user's 'profile' contact.
                 Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
-                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
+                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), PROJECTION,
 
                 // Select only email addresses.
                 ContactsContract.Contacts.Data.MIMETYPE +
@@ -346,7 +345,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         List<String> emails = new ArrayList<>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            emails.add(cursor.getString(ProfileQuery.ADDRESS));
+            emails.add(cursor.getString(ADDRESS));
             cursor.moveToNext();
         }
 
@@ -355,7 +354,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     @Override
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
-
+        //Call method on loader reset
     }
 
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
@@ -367,25 +366,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailView.setAdapter(adapter);
     }
 
-
-    private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
-
-        int ADDRESS = 0;
-        int IS_PRIMARY = 1;
-    }
-
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
-        private final String mPassword;
+        private String mEmail;
+        private String mPassword;
 
         UserLoginTask(String email, String password) {
             mEmail = email;
@@ -395,7 +383,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
+            //attempt authentication against a network service.
             return false;
         }
 

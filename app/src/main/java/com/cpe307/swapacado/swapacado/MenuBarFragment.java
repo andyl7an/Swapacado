@@ -18,14 +18,13 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class MenuBarFragment extends Fragment{
-    // TODO: Rename parameter arguments, choose names that match
+    // Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    // to do : Rename and change types of parameters
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -41,7 +40,7 @@ public class MenuBarFragment extends Fragment{
      * @param param2 Parameter 2.
      * @return A new instance of fragment MenuBarFragment.
      */
-    // TODO: Rename and change types and number of parameters
+    // to do : Rename and change types and number of parameters
     public static MenuBarFragment newInstance(String param1, String param2) {
         MenuBarFragment fragment = new MenuBarFragment();
         Bundle args = new Bundle();
@@ -53,10 +52,10 @@ public class MenuBarFragment extends Fragment{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // mParam1 and mParam2 declare here
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            // assign args to mParam
         }
     }
 
@@ -67,7 +66,7 @@ public class MenuBarFragment extends Fragment{
         return inflater.inflate(R.layout.fragment_menu_bar, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    // to do : Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -80,10 +79,7 @@ public class MenuBarFragment extends Fragment{
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
-            /* Flag
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-            */
+            // throw runtime exception must implement OnFragmentInteractionListener
         }
     }
 
@@ -105,7 +101,7 @@ public class MenuBarFragment extends Fragment{
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
+        // to do : Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

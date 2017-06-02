@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
-    protected String uniqueID;
+    protected String uniqueID = "123";
 
     //Make the buttons at the bottom of the screen active
     private void attachMenuButtonHandlers() {
@@ -39,7 +39,6 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-                uniqueID = "123";
                 intent.putExtra("uniqueID", uniqueID);
                 startActivity(intent);
                 finish();
@@ -54,7 +53,6 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, NewPostActivity.class);
-                uniqueID = "123";
                 intent.putExtra("uniqueID", uniqueID);
                 startActivity(intent);
             }
