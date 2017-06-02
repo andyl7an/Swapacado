@@ -56,14 +56,6 @@ class CustomAdapter extends ArrayAdapter<Post>{
         wantView.setText(wantString);
 
         Button contactButton = (Button)  theActualView.findViewById(R.id.postCard_contact);
-        contactButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                LayoutInflater myInflater = LayoutInflater.from(view.getContext());
-                View contact_popup = myInflater.inflate(R.layout.contact_layout, R.id.home_listview, false);
-                ViewGroup injectLocation = (ViewGroup);
-            }
-        });
 
         //Set profile picture of user
         //Show rating

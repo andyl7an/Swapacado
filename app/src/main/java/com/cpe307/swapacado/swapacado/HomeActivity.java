@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity {
 
     protected String uniqueID;
+    static ViewGroup injectLocation;
+
 
     //Make the buttons at the bottom of the screen active
     private void attachMenuButtonHandlers() {
@@ -78,7 +81,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        injectLocation = (ViewGroup) findViewById(R.id.injectLocationListView);
         uniqueID = this.getIntent().getStringExtra("uniqueID");
 
         attachMenuButtonHandlers();
@@ -89,7 +92,9 @@ public class HomeActivity extends AppCompatActivity {
         ListView myListView = (ListView) findViewById(R.id.home_listview);
         Post [] data = getPosts();
         myListView.setAdapter(new CustomAdapter(this.getApplicationContext(), data));
+
     }
+
     //Should change the list adapter according to what is in the
     private void filterByWhatIWant()
     {
@@ -161,11 +166,11 @@ public class HomeActivity extends AppCompatActivity {
         return new String [] {"Eggs", "Milk", "Cereal"};
     }
 
-    public void toggleHaves() {
+    public void toggleHaves(View view) {
         checkboxWork();
     }
 
-    public void toggleWants() {
+    public void toggleWants(View view) {
         checkboxWork();
     }
     public void filterPerfectTrades()
@@ -231,5 +236,4 @@ public class HomeActivity extends AppCompatActivity {
         }
 
     }
-
 }

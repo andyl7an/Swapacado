@@ -88,6 +88,7 @@
         android:layout_marginBottom="64dp"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
+        android:id="@+id/injectLocationListView"
         >
         <ListView
             android:layout_width="match_parent"
