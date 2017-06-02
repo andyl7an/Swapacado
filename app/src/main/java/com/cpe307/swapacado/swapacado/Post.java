@@ -1,5 +1,5 @@
 package com.cpe307.swapacado.swapacado;
-
+import java.util.Random;
 /**
  * A class to represent the Post class
  * Created by aalok_000 on 5/21/2017.
@@ -8,7 +8,6 @@ package com.cpe307.swapacado.swapacado;
 public class Post {
     public String posterId;
     public boolean isWant;
-    public boolean postVisible;
     public String wantString;
     public String hasString;
     public long epochTime;
@@ -23,7 +22,7 @@ public class Post {
     private int nameIndex;
     private boolean isMan;
 
-    final static String [] goods = new String [] {"Eggs", "Cereal", "Fruit", "Bagels", "Avocadoes", "Milk",
+    static final String [] goods = new String [] {"Eggs", "Cereal", "Fruit", "Bagels", "Avocadoes", "Milk",
         "Plus Dollars", "Ice Cream", "Chocolate", "Tea", "Apple Juice", "Coke",
         "Bread","Granola bars","Ramen","Chips","Cookies","Wine",};
     //Need empty constructor for db
@@ -61,13 +60,14 @@ public class Post {
     //Stub method returning dummy data
     public String getName()
     {
+        Random r = new Random();
         if(privateName != null)
         {
             return privateName;
         }
         String [] names = new String [] {"Davide", "Zach", "Bill", "Andy", "Josh", "Aalok", "Brandon", "Michael", "Mark", "Harry", "Richard", "Tim", "Russell",
             "Alex", "Mary", "Barbara", "Sam", "Linda", "Sophia", "Emma", "Olivia", "Ava", "Lily", "Zoe", "Allison", "Anne"};
-        int rand = (int) (Math.random() * names.length);
+        int rand = r.nextInt(names.length);
 
         if(faceURL == null)
         {
@@ -87,6 +87,7 @@ public class Post {
 
     //Unused: removed from code
     private String getRandomMaleFace() {
+        Random r = new Random();
         final String [] faces = new String []{
             "https://s-media-cache-ak0.pinimg.com/736x/ff/97/9f/ff979fc66dcb9cfb401cf2d5ccbdf295.jpg",
             "http://1.bp.blogspot.com/-crCjfff-csY/UeOBkw_DCuI/AAAAAAAAATI/QXzsnQLIZv4/s1600/Facial-mask-for-men-at-home.jpg",
@@ -108,12 +109,13 @@ public class Post {
             "http://www.taylorherring.com/blog/wp-content/uploads/2015/03/Archetypal-Male-Face-of-Beauty-embargoed-to-00.01hrs-30.03.15.jpg",
             "http://www.organiconline.com.sg/rg/face/rg-men-face-1.jpg",
         };
-        int index = (int) (Math.random() * faces.length);
-        return faces[index];
+        int i = r.nextInt(faces.length);
+        return faces[i];
     }
 
     //Unused : removed from code
     private String getRandomWomenFace() {
+        Random r = new Random();
         final String [] faces = new String []{
             "https://beautysaloon.files.wordpress.com/2010/03/beautiful-face-wallpapers_11213_1280x1024.jpg",
             "http://wallstreetinsanity.com/wp-content/uploads/This-Survey-Shows-Us-How-Different-Men-And-Women-View-The-Perfect-Female-Face-.jpg",
@@ -137,8 +139,8 @@ public class Post {
             "http://www.uni-regensburg.de/Fakultaeten/phil_Fak_II/Psychologie/Psy_II/beautycheck/english/kindchenschema/kindfrau_c/kindfrau_c_60_gr.jpg",
 
         };
-        int index = (int) (Math.random() * faces.length);
-        return faces[index];
+        int i = r.nextInt(faces.length);
+        return faces[i];
     }
     public String getFaceURL()
     {
@@ -147,24 +149,26 @@ public class Post {
 
     public String getDistanceString()
     {
+        Random r = new Random();
         if(privateDistance != null)
         {
             return privateDistance;
         }
-        int rand = (int) (Math.random() * 50) + 1;
+        int rand = r.nextInt(50) + 1;
         double milesAway = rand / 10.0;
         privateDistance = String.format("%.1f miles", milesAway);
         return getDistanceString();
     }
     public String getPostTimeString()
     {
+        Random r = new Random();
         if(privateDate != null)
         {
             return privateDate;
         }
         String output = "";
-        int hr = 8 + ((int) ( Math.random() * 12));
-        int min = ((int) (Math.random() * 60));
+        int hr = 8 + r.nextInt(12);
+        int min =  r.nextInt(12);
         if(hr < 12)
         {
             output = hr + ":";
@@ -211,14 +215,15 @@ public class Post {
     }
     public String getWantString()
     {
+        Random r = new Random();
         if(privateWant != null)
         {
             return privateWant;
         }
-        int rand = ((int) (Math.random() * goods.length));
+        int rand = r.nextInt(goods.length);
         while(index == rand)
         {
-            rand = ((int) (Math.random() * goods.length));
+            rand = r.nextInt(goods.length);
         }
         index = rand;
         privateWant = "I want: " + goods[rand];
@@ -226,14 +231,15 @@ public class Post {
     }
     public String getHaveString()
     {
+        Random r = new Random();
         if(privateHave != null)
         {
             return privateHave;
         }
-        int rand = ((int) (Math.random() * goods.length));
+        int rand = r.nextInt(goods.length);
         while(index == rand)
         {
-            rand = ((int) (Math.random() * goods.length));
+            rand = r.nextInt(goods.length);
         }
         index = rand;
         privateHave = "I have: " + goods[rand];
@@ -241,6 +247,7 @@ public class Post {
     }
     public boolean matchesSearchQuery(String query)
     {
+        String upperQuery;
         String searchString = "";
         if(privateName != null)
         {
@@ -255,8 +262,8 @@ public class Post {
             searchString += privateHave;
         }
         searchString = searchString.toUpperCase();
-        query = query.toUpperCase();
-        return searchString.indexOf(query) != -1;
+        upperQuery = query.toUpperCase();
+        return searchString.indexOf(upperQuery) != -1;
     }
 
     public boolean matchesHaves(String query) {
@@ -277,59 +284,47 @@ public class Post {
     public int getFaceRID() {
         if(isMan)
         {
-            if(nameIndex == 0) return R.drawable.man1;
-            else if(nameIndex == 1) return R.drawable.man2;
-            else if(nameIndex == 2) return R.drawable.man3;
-            else if(nameIndex == 3) return R.drawable.man4;
-            else if(nameIndex == 4) return R.drawable.man5;
-            else if(nameIndex == 5) return R.drawable.man6;
-            else if(nameIndex == 6) return R.drawable.man7;
-            else if(nameIndex == 7) return R.drawable.man8;
-            else if(nameIndex == 8) return R.drawable.man9;
-            else if(nameIndex == 9) return R.drawable.man10;
-            else if(nameIndex == 10) return R.drawable.man1;
-            else if(nameIndex == 11) return R.drawable.man12;
-            else if(nameIndex == 12) return R.drawable.man13;
-            else if(nameIndex == 13) return R.drawable.man14;
-            else return R.drawable.man15;
+            switch(nameIndex){
+                case 0: return R.drawable.man1;
+                case 1: return R.drawable.man2;
+                case 2: return R.drawable.man3;
+                case 3: return R.drawable.man4;
+                case 4: return R.drawable.man5;
+                case 5: return R.drawable.man6;
+                case 6: return R.drawable.man7;
+                case 7: return R.drawable.man8;
+                case 8: return R.drawable.man9;
+                case 9: return R.drawable.man10;
+                case 10: return R.drawable.man11;
+                case 11: return R.drawable.man12;
+                case 12: return R.drawable.man13;
+                case 13: return R.drawable.man14;
+                default: return R.drawable.man15;
+            }
         }
         else
         {
-            if(nameIndex == 0) return R.drawable.woman1;
-            else if(nameIndex == 1) return R.drawable.woman2;
-            else if(nameIndex == 2) return R.drawable.woman3;
-            else if(nameIndex == 3) return R.drawable.woman4;
-            else if(nameIndex == 4) return R.drawable.woman5;
-            else if(nameIndex == 5) return R.drawable.woman6;
-            else if(nameIndex == 6) return R.drawable.woman7;
-            else if(nameIndex == 7) return R.drawable.woman8;
-            else if(nameIndex == 8) return R.drawable.woman9;
-            else if(nameIndex == 9) return R.drawable.woman10;
-            else if(nameIndex == 10) return R.drawable.woman1;
-            else if(nameIndex == 11) return R.drawable.woman12;
-            else if(nameIndex == 12) return R.drawable.woman13;
-            else if(nameIndex == 13) return R.drawable.woman14;
-            else if(nameIndex == 14) return R.drawable.woman15;
-            else return R.drawable.woman16;
+            switch(nameIndex){
+                case 0 : return R.drawable.woman1;
+                case 1 : return R.drawable.woman2;
+                case 2 : return R.drawable.woman3;
+                case 3 : return R.drawable.woman4;
+                case 4 : return R.drawable.woman5;
+                case 5 :return R.drawable.woman6;
+                case 6 : return R.drawable.woman7;
+                case 7 : return R.drawable.woman8;
+                case 8 : return R.drawable.woman9;
+                case 9 : return R.drawable.woman10;
+                case 10 : return R.drawable.woman11;
+                case 11 : return R.drawable.woman12;
+                case 12 : return R.drawable.woman13;
+                case 13 : return R.drawable.woman14;
+                case 14 : return R.drawable.woman15;
+                default :  return R.drawable.woman16;
+            }
+
         }
 
     }
-    /**
-     *
-     * @return true if poster wants the objects, false if poster has objects
-     */
-/*
-    public String getWantString()
-    {
-        return this.wantString;
-    }
-    public String getHasString()
-    {
-        return this.hasString;
-    }
-    public long getPostTime()
-    {
-        return epochTime;
-    }
-    */
+
 }

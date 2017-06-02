@@ -18,23 +18,25 @@ import java.util.List;
  */
 
 public class PostDatabase {
-
-    final static String dbName = "AllPostsV1";
+    static final String DBNAME = "AllPostsV1";
     //THIS LIST WILL KEEP TRACK OF ALL THE POSTS
-    static List<Post> allPosts = new ArrayList<Post> ();
+    static List<Post> allPosts = new ArrayList<> ();
     //Later on implement a final List that keeps tracks of diffs and pushes updates
-
     static Post [] theDummyPosts = null;
+
+    private PostDatabase() {
+        throw new IllegalAccessError("Utility class");
+    }
 
     public static void init()
     {
         FirebaseDatabase dbInstance = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = dbInstance.getReference(dbName);
+        DatabaseReference myRef = dbInstance.getReference(DBNAME);
 
         allPosts = new ArrayList<>();
         Post samplePost = Post.createPost("123", true, "i want", "i have");
         allPosts.add(samplePost);
-        myRef.setValue(allPosts);;
+        myRef.setValue(allPosts);
     }
     public static List <Post> getAllPosts()
     {
@@ -55,9 +57,9 @@ public class PostDatabase {
     public static void refreshAllPosts()
     {
         FirebaseDatabase dbInstance = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = dbInstance.getReference(dbName);
+        DatabaseReference myRef = dbInstance.getReference(DBNAME);
 
-        final String TAG = "Ahluwalia";
+        final String tag = "Ahluwalia";
 
         myRef.addValueEventListener(new ValueEventListener() {
             //Called every time the data in the db changes
@@ -65,12 +67,12 @@ public class PostDatabase {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<List<Post>> t = new GenericTypeIndicator<List<Post>>() {};
                 List<Post> updatedList = dataSnapshot.getValue(t);
-                Log.d(TAG, "Updated db to: " + updatedList);
+                Log.d(tag, "Updated db to: " + updatedList);
                 allPosts = updatedList;
             }
             @Override
             public void onCancelled(DatabaseError error) {
-                Log.w(TAG, "Failed to read value.", error.toException());
+                Log.w(tag, "Failed to read value.", error.toException());
             }
         });
     }

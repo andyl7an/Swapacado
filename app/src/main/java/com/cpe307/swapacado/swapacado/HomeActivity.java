@@ -14,9 +14,7 @@ import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
-    protected String uniqueID;
-    static ViewGroup injectLocation;
-
+    protected String uniqueID = "123";
 
     //Make the buttons at the bottom of the screen active
     private void attachMenuButtonHandlers() {
@@ -42,7 +40,6 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-                uniqueID = "123";
                 intent.putExtra("uniqueID", uniqueID);
                 startActivity(intent);
                 finish();
@@ -57,7 +54,6 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, NewPostActivity.class);
-                uniqueID = "123";
                 intent.putExtra("uniqueID", uniqueID);
                 startActivity(intent);
             }
@@ -81,7 +77,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        injectLocation = (ViewGroup) findViewById(R.id.injectLocationListView);
         uniqueID = this.getIntent().getStringExtra("uniqueID");
 
         attachMenuButtonHandlers();

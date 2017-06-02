@@ -13,6 +13,7 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Random;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -21,7 +22,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     String uniqueID;
 
-    private UserAccount getProfileFromUniqueId(String uniqueId) {
+    private UserAccount getProfileFromUniqueId() {
         UserAccount user = new UserAccount();
         user.setFirstname("Davide");
         user.setLastname("Falessi");
@@ -45,9 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "Search was clicked!!!", Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
-                //intent.putExtra("uniqueID", uniqueID);
-                //startActivity(intent);
+
             }
         });
 
@@ -67,10 +66,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         attachMenuButtonHandlers();
 
-        String uniqueID = this.getIntent().getStringExtra("uniqueID");
-        this.uniqueID = uniqueID;
+        String uid = this.getIntent().getStringExtra("uniqueID");
+        this.uniqueID = uid;
 
-        UserAccount currentUser = getProfileFromUniqueId(uniqueID);
+        UserAccount currentUser = getProfileFromUniqueId();
 
         TextView nameBox = (TextView) findViewById(R.id.profilePageName);
         nameBox.setText(currentUser.getFirstname() + " " + currentUser.getLastname());
@@ -92,7 +91,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void setTradeCount() {
         TextView trades = (TextView) findViewById(R.id.profilePageTradeCount);
-        int tradeCount = getTradesById(uniqueID);
+        int tradeCount = getTradesById();
         trades.setText("Trades : " + tradeCount);
         if(tradeCount == 0) {
             trades.setText("No Trades!!!");
@@ -112,8 +111,9 @@ public class ProfileActivity extends AppCompatActivity {
         profPic.setLayoutParams(halfPage);
     }
 
-    private int getTradesById(String id) {
-        return (int) (Math.random() * 100);
+    private int getTradesById() {
+        Random r = new Random();
+        return r.nextInt(100);
     }
 
     private float getUserRating()
@@ -129,8 +129,7 @@ public class ProfileActivity extends AppCompatActivity {
         protected Drawable doInBackground(String... strings) {
             try {
                 InputStream is = (InputStream) new URL(strings[0]).getContent();
-                Drawable d = Drawable.createFromStream(is, "content delivery source");
-                return d;
+                return Drawable.createFromStream(is, "content delivery source");
             } catch(Exception ex) {
                 Log.d("Ahluwalia", "Exception with network request!!!");
                 Log.d("Ahluwalia", ex.toString());

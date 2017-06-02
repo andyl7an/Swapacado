@@ -47,10 +47,14 @@ public class NewPostActivity extends AppCompatActivity {
 
         haveEdit.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //implement before text change
+            }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //implement on text change
+            }
 
             @Override
             public void afterTextChanged(Editable editable) {
@@ -59,10 +63,14 @@ public class NewPostActivity extends AppCompatActivity {
         });
         wantEdit.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //implement before text change
+            }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //implement on text change
+            }
 
             @Override
             public void afterTextChanged(Editable editable) {
