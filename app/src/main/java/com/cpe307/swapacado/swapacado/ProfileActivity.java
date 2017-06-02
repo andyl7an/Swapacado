@@ -13,6 +13,7 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Random;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -111,7 +112,8 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private int getTradesById() {
-        return (int) (Math.random() * 100);
+        Random r = new Random();
+        return r.nextInt(100);
     }
 
     private float getUserRating()
