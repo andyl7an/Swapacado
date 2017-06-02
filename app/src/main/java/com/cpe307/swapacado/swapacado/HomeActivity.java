@@ -31,9 +31,6 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "Search was clicked!!!", Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
-                //intent.putExtra("uniqueID", uniqueID);
-                //startActivity(intent);
             }
         });
 
@@ -77,25 +74,10 @@ public class HomeActivity extends AppCompatActivity {
         messageIcon.setLayoutParams(layoutParams);
     }
 
-    private void configureScreen()
-    {
-        View decorView = getWindow().getDecorView();
-        // Hide both the navigation bar and the status bar.
-        // SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
-        // a general rule, you should design your app to hide the status bar whenever you
-        // hide the navigation bar.
-        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-//        configureScreen();
 
         uniqueID = this.getIntent().getStringExtra("uniqueID");
 
@@ -113,7 +95,7 @@ public class HomeActivity extends AppCompatActivity {
     {
         String [] wants = getWants();
         Post [] currentPosts = getPosts();
-        ArrayList<Post> filtered = new ArrayList<Post>();
+        ArrayList<Post> filtered = new ArrayList<>();
         for(Post aPost : currentPosts)
         {
             boolean canAdd = false;
@@ -137,12 +119,6 @@ public class HomeActivity extends AppCompatActivity {
 
     private Post[] getPosts() {
         return  PostDatabase.getAllPostsDummy();
-//        Post [] data = new Post[50];
-//        for(int ind = 0; ind<data.length; ind++)
-//        {
-//            data[ind] = Post.createPost("PosterId", true,"I want", "I have");
-//        }
-//        return data;
     }
 
     //Display in list view only people asking for things i have
@@ -150,7 +126,7 @@ public class HomeActivity extends AppCompatActivity {
     {
         String [] haves = getHaves();
         Post [] currentPosts = getPosts();
-        ArrayList<Post> filtered = new ArrayList<Post>();
+        ArrayList<Post> filtered = new ArrayList<>();
         for(Post aPost : currentPosts)
         {
             boolean canAdd = false;
@@ -185,12 +161,11 @@ public class HomeActivity extends AppCompatActivity {
         return new String [] {"Eggs", "Milk", "Cereal"};
     }
 
-    public void toggleHaves(View view) {
+    public void toggleHaves() {
         checkboxWork();
-
     }
 
-    public void toggleWants(View view) {
+    public void toggleWants() {
         checkboxWork();
     }
     public void filterPerfectTrades()
