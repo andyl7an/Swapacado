@@ -121,11 +121,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     Toast.makeText(getApplicationContext(), "Welcome : " + user.getEmail(), Toast.LENGTH_LONG).show();
                     Intent goToHome = new Intent(LoginActivity.this, HomeActivity.class);
-                    goToHome.putExtra("displayName", user.getDisplayName());
-                    goToHome.putExtra("email", user.getEmail());
-                    goToHome.putExtra("photoUrl", user.getPhotoUrl());
                     goToHome.putExtra("uid", user.getUid());
                     startActivity(goToHome);
+                    user = null;
+                    finish();
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");

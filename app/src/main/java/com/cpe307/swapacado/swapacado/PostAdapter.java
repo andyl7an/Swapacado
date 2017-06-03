@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 class CustomAdapter extends ArrayAdapter<Post>{
@@ -66,6 +67,11 @@ class CustomAdapter extends ArrayAdapter<Post>{
                 TextView textName = (TextView) contact_popup.findViewById(R.id.contactPopup_name);
                 TextView textPhone = (TextView) contact_popup.findViewById(R.id.contactPopup_phone);
                 TextView textEmail = (TextView) contact_popup.findViewById(R.id.contactPopup_email);
+
+                RatingBar ratingBar = (RatingBar) contact_popup.findViewById(R.id.contactPopup_rating);
+                ratingBar.setIsIndicator(true);
+                float randomFloat = (float) (0.5 * (1 + ((int)(Math.random() * 10))));
+                ratingBar.setRating(randomFloat);
 
                 textName.setText(name);
                 textName.setTextSize(42);
