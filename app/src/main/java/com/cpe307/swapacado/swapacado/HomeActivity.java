@@ -230,4 +230,11 @@ public class HomeActivity extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        checkboxWork();
+
+    }
 }

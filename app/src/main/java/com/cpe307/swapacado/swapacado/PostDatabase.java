@@ -108,4 +108,15 @@ public class PostDatabase {
         myRef.setValue(allPosts);
         return true;
     }
+
+    public static void demoAdd(Post toAdd) {
+        Post [] oldPosts = getAllPostsDummy();
+        Post [] newPosts = new Post [oldPosts.length + 1];
+        newPosts[0] = toAdd;
+        for(int ind = 0; ind < oldPosts.length; ind++)
+        {
+            newPosts[ind+1] = oldPosts[ind];
+        }
+        theDummyPosts = newPosts;
+    }
 }

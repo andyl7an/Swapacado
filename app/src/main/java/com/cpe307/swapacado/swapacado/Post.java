@@ -21,6 +21,7 @@ public class Post {
     private String faceURL;
     private int nameIndex;
     private boolean isMan;
+    private String longDescription;
 
     static final String [] goods = new String [] {"Eggs", "Cereal", "Fruit", "Bagels", "Avocadoes", "Milk",
         "Plus Dollars", "Ice Cream", "Chocolate", "Tea", "Apple Juice", "Coke",
@@ -47,6 +48,20 @@ public class Post {
         p.populateHiddenVariables();
         return p;
     }
+    public static Post newPostDemo(String privateName, String privateDistance, String privateDate,
+        String privateWant, String privateHave, boolean isMan, String longDescription, int nameIndex)
+    {
+        Post p = new Post();
+        p.privateName = privateName;
+        p.privateDistance = privateDistance;
+        p.privateDate = privateDate;
+        p.privateWant = privateWant;
+        p.privateHave = privateHave;
+        p.isMan = isMan;
+        p.longDescription = longDescription;
+        p.nameIndex = nameIndex;
+        return p;
+    }
 
     //A method to set the private variables for the program
     private void populateHiddenVariables() {
@@ -55,6 +70,9 @@ public class Post {
         getHaveString();
         getWantString();
         getPostTimeString();
+        longDescription = "This is where a user would explain in detail what he or she has and what is being sought. For example : " +
+                "I have 34 green nature valley bars and am looking to trade for 2 boxes of cereal. Lucky charms is preferred, and don't" +
+                "message if you have Rasin Bran.";
     }
 
     //Stub method returning dummy data
