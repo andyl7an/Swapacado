@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity {
 
     protected String uniqueID = "123";
+    private boolean shouldRefreshList;
 
     //Make the buttons at the bottom of the screen active
     private void attachMenuButtonHandlers() {
@@ -53,6 +54,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, NewPostActivity.class);
+                shouldRefreshList = true;
                 intent.putExtra("uniqueID", uniqueID);
                 startActivity(intent);
             }
@@ -234,7 +236,12 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        checkboxWork();
+        if(shouldRefreshList)
+        {
+            shouldRefreshList = false;
+            checkboxWork();
+        }
+
 
     }
 }

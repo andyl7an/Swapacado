@@ -1,5 +1,6 @@
 package com.cpe307.swapacado.swapacado;
 import java.util.Random;
+
 /**
  * A class to represent the Post class
  * Created by aalok_000 on 5/21/2017.
@@ -71,7 +72,7 @@ public class Post {
         getWantString();
         getPostTimeString();
         longDescription = "This is where a user would explain in detail what he or she has and what is being sought. For example : " +
-                "I have 34 green nature valley bars and am looking to trade for 2 boxes of cereal. Lucky charms is preferred, and don't" +
+                "I have 34 green nature valley bars and am looking to trade for 2 boxes of cereal. Lucky charms is preferred. Don't " +
                 "message if you have Rasin Bran.";
     }
 
@@ -345,4 +346,7 @@ public class Post {
 
     }
 
+    public String getDescription() {
+        return longDescription;
+    }
 }

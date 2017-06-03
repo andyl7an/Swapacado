@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_expanded_post"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="8dp"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.cpe307.swapacado.swapacado.ExpandedPostActivity"
+    android:orientation="vertical"
+    >
+    <!--Container for picture / first name and rating-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            android:src="@drawable/egg"
+            android:id="@+id/expanded_egg"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="First"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:textAlignment="center"
+                android:layout_marginBottom="16dp"
+                android:id="@+id/expanded_name"
+                />
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="true"
+                android:scaleX="0.85"
+                android:scaleY="0.85"
+                android:id="@+id/expanded_rating"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+    <!--android:layout_weight="1"-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="12dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email : email@calpoly.edu"
+            android:textColor="#000044"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:id="@+id/expanded_email"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone : 425.985.4894"
+            android:textColor="#000044"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:id="@+id/expanded_phone"
+            />
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Prefer text. Please don't message me after 6pm."
+            android:textColor="#000044"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:id="@+id/expanded_contactPreferences"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:text="I Have: "
+            android:id="@+id/expanded_have"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:text="I Want: "
+            android:id="@+id/expanded_want"
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:text="The description of the post should go here!"
+        android:textColor="#000000"
+        android:id="@+id/expanded_description"
+        android:textSize="18sp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <Button
+            android:layout_marginRight="8dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Let's Swap"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:id="@+id/expanded_swapButton"
+            />
+    </RelativeLayout>
+</LinearLayout>

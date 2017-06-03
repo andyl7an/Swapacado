@@ -6,6 +6,7 @@ package com.cpe307.swapacado.swapacado;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 class CustomAdapter extends ArrayAdapter<Post>{
 
     Context homeContext;
+
 
     public CustomAdapter(Context context, Post [] posts) {
         super(context, R.layout.custom_row ,posts);
@@ -36,9 +38,11 @@ class CustomAdapter extends ArrayAdapter<Post>{
         final String name = singlePost.getName();
         TextView nameView = (TextView) theActualView.findViewById(R.id.postCard_name);
         nameView.setText(name);
+        nameView.setTag(singlePost.getDescription());
 
         ImageView faceLocation = (ImageView) theActualView.findViewById(R.id.postCard_egg);
         faceLocation.setImageResource(singlePost.getFaceRID());
+        faceLocation.setTag(singlePost.getFaceRID());
 
 
         String distanceString = singlePost.getDistanceString();
@@ -79,14 +83,28 @@ class CustomAdapter extends ArrayAdapter<Post>{
                 textPhone.setTextSize(30);
                 textEmail.setText(name+"@calpoly.edu");
                 textEmail.setTextSize(30);
+            }
+        });
+        theActualView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nameString = ((TextView) view.findViewById(R.id.postCard_name)).getText().toString();
+                int profileResouurce = (Integer) ((ImageView) view.findViewById(R.id.postCard_egg)).getTag();
+                String iWantString = ((TextView) view.findViewById(R.id.postCard_want)).getText().toString();;
+                String iHaveString = ((TextView) view.findViewById(R.id.postCard_have)).getText().toString();;
+                String description = (String) ((TextView) view.findViewById(R.id.postCard_name)).getTag();
 
+                Intent expandedPost = new Intent(homeContext, ExpandedPostActivity.class);
+                expandedPost.putExtra("nameString", nameString);
+                expandedPost.putExtra("profileResource", profileResouurce);
+                expandedPost.putExtra("iWantString", iWantString);
+                expandedPost.putExtra("iHaveString", iHaveString);
+                expandedPost.putExtra("description", description);
+                homeContext.startActivity(expandedPost);
             }
         });
 
-        //Set profile picture of user
-        //Show rating
-        //Wire contact button
-        //Wire Offer button
+        //Wire Swap button
         return theActualView;
     }
 }
