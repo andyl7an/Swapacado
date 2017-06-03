@@ -85,6 +85,39 @@ class CustomAdapter extends ArrayAdapter<Post>{
                 textEmail.setTextSize(30);
             }
         });
+        Button swapButton = (Button) theActualView.findViewById(R.id.postCard_swap);
+
+        String posterName = name;
+        String posterDescription = singlePost.getDescription();
+
+        swapButton.setTag(R.string.proposeVariable1, posterName);
+        swapButton.setTag(R.string.proposeVariable2, posterDescription);
+        swapButton.setTag(R.string.proposeVariable3, haveString);
+        swapButton.setTag(R.string.proposeVariable4, wantString);
+
+//        String posterName = ((TextView) view.findViewById(R.id.postCard_name)).getText().toString();
+//        String posterDescription =(String) ((TextView) view.findViewById(R.id.postCard_name)).getTag();
+                swapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent proposeSwap = new Intent(homeContext, ProposeSwapActivity.class);
+                String posterName = (String) view.getTag(R.string.proposeVariable1);
+                String posterDescription = (String) view.getTag(R.string.proposeVariable2);
+                String haveString = (String) view.getTag(R.string.proposeVariable3);
+                haveString = haveString.substring(haveString.indexOf(':') + 2);
+                String wantString = (String) view.getTag(R.string.proposeVariable4);
+                wantString = wantString.substring(wantString.indexOf(':') + 2);
+                String yourName = "Davide";
+
+                proposeSwap.putExtra("posterName", posterName);
+                proposeSwap.putExtra("yourName", yourName);
+                proposeSwap.putExtra("posterDescription", posterDescription);
+                proposeSwap.putExtra("wantString", wantString);
+                proposeSwap.putExtra("haveString", haveString);
+
+                homeContext.startActivity(proposeSwap);
+            }
+        });
         theActualView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

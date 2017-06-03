@@ -3,6 +3,7 @@ package com.cpe307.swapacado.swapacado;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ public class ExpandedPostActivity extends AppCompatActivity {
 
         TextView nameView = (TextView) findViewById(R.id.expanded_name);
         ImageView eggView = (ImageView) findViewById(R.id.expanded_egg);
+
         RatingBar ratingView = (RatingBar) findViewById(R.id.expanded_rating);
 
         TextView emailView = (TextView) findViewById(R.id.expanded_email);
@@ -44,5 +46,25 @@ public class ExpandedPostActivity extends AppCompatActivity {
         ratingView.setRating(randomRating);
         descriptionView.setText(description);
 
+
+    }
+
+    public void hitSwapButton(View view) {
+        String nameString = ((TextView) findViewById(R.id.expanded_name)).getText().toString();
+        String iWantString = ((TextView) findViewById(R.id.expanded_want)).getText().toString();
+        iWantString = iWantString.substring(iWantString.indexOf(':') + 2);
+        String iHaveString = ((TextView) findViewById(R.id.expanded_have)).getText().toString();
+        iHaveString = iHaveString.substring(iHaveString.indexOf(':') + 2);
+        String description = (String) ((TextView) findViewById(R.id.expanded_description)).getText();
+
+        Intent proposeSwap = new Intent(getApplicationContext(), ProposeSwapActivity.class);
+        proposeSwap.putExtra("posterName", nameString);
+        proposeSwap.putExtra("yourName", "Davide");
+        proposeSwap.putExtra("wantString", iWantString);
+        proposeSwap.putExtra("haveString", iHaveString);
+        proposeSwap.putExtra("posterDescription", description);
+
+        startActivity(proposeSwap);
+        finish();
     }
 }

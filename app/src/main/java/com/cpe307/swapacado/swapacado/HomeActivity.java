@@ -88,7 +88,6 @@ public class HomeActivity extends AppCompatActivity {
         ListView myListView = (ListView) findViewById(R.id.home_listview);
         Post [] data = getPosts();
         myListView.setAdapter(new CustomAdapter(HomeActivity.this, data));
-
     }
 
     //Should change the list adapter according to what is in the

@@ -67,7 +67,8 @@
             android:name=".ProfileActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".NewPostActivity" />
-        <activity android:name=".ExpandedPostActivity"></activity>
+        <activity android:name=".ExpandedPostActivity" />
+        <activity android:name=".ProposeSwapActivity"></activity>
     </application>
 
 </manifest>
