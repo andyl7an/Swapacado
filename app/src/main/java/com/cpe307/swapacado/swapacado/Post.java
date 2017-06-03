@@ -168,7 +168,7 @@ public class Post {
         }
         String output = "";
         int hr = 8 + r.nextInt(12);
-        int min =  r.nextInt(12);
+        int min =  r.nextInt(60);
         if(hr < 12)
         {
             output = hr + ":";

@@ -38,6 +38,7 @@
             android:textAlignment="center"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
             android:id="@+id/homeTitle"
+            android:textStyle="bold"
             />
         <ImageButton
             android:layout_width="wrap_content"

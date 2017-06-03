@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -86,7 +85,7 @@ public class HomeActivity extends AppCompatActivity {
 
         ListView myListView = (ListView) findViewById(R.id.home_listview);
         Post [] data = getPosts();
-        myListView.setAdapter(new CustomAdapter(this.getApplicationContext(), data));
+        myListView.setAdapter(new CustomAdapter(HomeActivity.this, data));
 
     }
 
@@ -114,7 +113,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Post [] filteredArray = filtered.toArray(new Post[filtered.size()]);
         ListView myListView = (ListView) findViewById(R.id.home_listview);
-        myListView.setAdapter(new CustomAdapter(this.getApplicationContext(), filteredArray));
+        myListView.setAdapter(new CustomAdapter(HomeActivity.this, filteredArray));
     }
 
     private Post[] getPosts() {
@@ -144,7 +143,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         Post [] filteredArray = filtered.toArray(new Post[filtered.size()]);
         ListView myListView = (ListView) findViewById(R.id.home_listview);
-        myListView.setAdapter(new CustomAdapter(this.getApplicationContext(), filteredArray));
+        myListView.setAdapter(new CustomAdapter(HomeActivity.this, filteredArray));
 
     }
 
@@ -201,7 +200,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Post [] filteredArray = filtered.toArray(new Post[filtered.size()]);
         ListView myListView = (ListView) findViewById(R.id.home_listview);
-        myListView.setAdapter(new CustomAdapter(this.getApplicationContext(), filteredArray));
+        myListView.setAdapter(new CustomAdapter(HomeActivity.this, filteredArray));
     }
 
     private void checkboxWork() {
@@ -227,7 +226,7 @@ public class HomeActivity extends AppCompatActivity {
         {
             ListView myListView = (ListView) findViewById(R.id.home_listview);
             Post [] data = getPosts();
-            myListView.setAdapter(new CustomAdapter(this.getApplicationContext(), data));
+            myListView.setAdapter(new CustomAdapter(HomeActivity.this, data));
         }
 
     }

@@ -4,6 +4,7 @@ package com.cpe307.swapacado.swapacado;
  * Created by aalok_000 on 5/22/2017.
  */
 
+import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +16,11 @@ import android.widget.TextView;
 
 class CustomAdapter extends ArrayAdapter<Post>{
 
+    Context homeContext;
+
     public CustomAdapter(Context context, Post [] posts) {
         super(context, R.layout.custom_row ,posts);
+        homeContext = context;
     }
 
     @Override
@@ -28,7 +32,7 @@ class CustomAdapter extends ArrayAdapter<Post>{
 
         Post singlePost = getItem(position);
 
-        String name = singlePost.getName();
+        final String name = singlePost.getName();
         TextView nameView = (TextView) theActualView.findViewById(R.id.postCard_name);
         nameView.setText(name);
 
@@ -53,6 +57,25 @@ class CustomAdapter extends ArrayAdapter<Post>{
         wantView.setText(wantString);
 
         Button contactButton = (Button)  theActualView.findViewById(R.id.postCard_contact);
+        contactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dialog contact_popup = new Dialog(homeContext);
+                contact_popup.setContentView(R.layout.contact_layout);
+                contact_popup.show();
+                TextView textName = (TextView) contact_popup.findViewById(R.id.contactPopup_name);
+                TextView textPhone = (TextView) contact_popup.findViewById(R.id.contactPopup_phone);
+                TextView textEmail = (TextView) contact_popup.findViewById(R.id.contactPopup_email);
+
+                textName.setText(name);
+                textName.setTextSize(42);
+                textPhone.setText("425.985.4894");
+                textPhone.setTextSize(30);
+                textEmail.setText(name+"@calpoly.edu");
+                textEmail.setTextSize(30);
+
+            }
+        });
 
         //Set profile picture of user
         //Show rating
