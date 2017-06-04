@@ -11,6 +11,8 @@ import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -51,9 +53,22 @@ public class PostDatabase {
             {
                 theDummyPosts[ind] = Post.createPost("",false,"","");
             }
+            timeSortDummyPosts();
         }
         return theDummyPosts;
     }
+
+    private static void timeSortDummyPosts() {
+        Arrays.sort(theDummyPosts, new Comparator(){
+            public int compare(Object o1, Object o2)
+            {
+                Post p1 = (Post) o1;
+                Post p2 = (Post) o2;
+                return p1.demoTime - p2.demoTime;
+            }
+        });
+    }
+
     public static void refreshAllPosts()
     {
         FirebaseDatabase dbInstance = FirebaseDatabase.getInstance();

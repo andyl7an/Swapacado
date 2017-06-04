@@ -1,4 +1,6 @@
 package com.cpe307.swapacado.swapacado;
+
+import java.util.Calendar;
 import java.util.Random;
 
 /**
@@ -23,6 +25,8 @@ public class Post {
     private int nameIndex;
     private boolean isMan;
     private String longDescription;
+
+    public int demoTime;
 
     static final String [] goods = new String [] {"Eggs", "Cereal", "Fruit", "Bagels", "Avocadoes", "Milk",
         "Plus Dollars", "Ice Cream", "Chocolate", "Tea", "Apple Juice", "Coke",
@@ -188,6 +192,20 @@ public class Post {
         String output = "";
         int hr = 8 + r.nextInt(12);
         int min =  r.nextInt(60);
+
+        Calendar cal = Calendar.getInstance();
+        int timeNow = cal.get(Calendar.HOUR_OF_DAY) * 60 + cal.get(Calendar.MINUTE);
+        int minutesSinceMidnight = hr * 60 + min;
+
+        if(timeNow >= minutesSinceMidnight)
+        {
+            this.demoTime = timeNow - minutesSinceMidnight;
+        }
+        else
+        {
+            this.demoTime = 60 * 24 - (minutesSinceMidnight - timeNow);
+        }
+
         if(hr < 12)
         {
             output = hr + ":";
