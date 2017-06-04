@@ -45,7 +45,8 @@ public class ProfileActivity extends AppCompatActivity {
         searchMenuBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Search was clicked!!!", Toast.LENGTH_SHORT).show();
+                Intent searchIntent = new Intent(ProfileActivity.this, SearchActivity.class);
+                startActivity(searchIntent);
 
             }
         });

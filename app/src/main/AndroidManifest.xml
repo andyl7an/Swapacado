@@ -69,6 +69,7 @@
         <activity android:name=".NewPostActivity" />
         <activity android:name=".ExpandedPostActivity" />
         <activity android:name=".ProposeSwapActivity"></activity>
+        <activity android:name=".SearchActivity" />
     </application>
 
 </manifest>
