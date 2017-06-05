@@ -75,8 +75,8 @@ public class NewPostActivity extends AppCompatActivity {
     }
 
     private void attachPostClickListener() {
-        Button postButton = (Button) findViewById(R.id.newPost_postButton);
-        postButton.setOnClickListener(new View.OnClickListener() {
+        Button tempPostButton = (Button) findViewById(R.id.newPost_postButton);
+        tempPostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
@@ -106,12 +106,13 @@ public class NewPostActivity extends AppCompatActivity {
         final EditText haveEdit = (EditText) findViewById(R.id.newPost_haveEditText);
         final EditText wantEdit = (EditText) findViewById(R.id.newPost_wantEditText);
         final EditText description = (EditText) findViewById(R.id.newPost_description);
-        boolean enabled = (!haveEdit.getText().toString().equals("")) &&
-                (!wantEdit.getText().toString().equals("")) &&
-                (!description.getText().toString().equals(""));
 
-        postButton = (Button) findViewById(R.id.newPost_postButton);
-        postButton.setEnabled(enabled);
+        boolean enabled = (!"".equals(haveEdit.getText().toString()) &&
+                !"".equals(wantEdit.getText().toString()) &&
+                !"".equals(description.getText().toString()));
+
+        this.postButton = (Button) findViewById(R.id.newPost_postButton);
+        this.postButton.setEnabled(enabled);
 
 
     }
@@ -120,19 +121,20 @@ public class NewPostActivity extends AppCompatActivity {
         final EditText haveEdit = (EditText) findViewById(R.id.newPost_haveEditText);
         final EditText wantEdit = (EditText) findViewById(R.id.newPost_wantEditText);
 
-        final ViewGroup injectionLocation = (LinearLayout) this.findViewById(R.id.newPost_customRowInjectionLocation);
-        final TextView iHaveView = (TextView) injectionLocation.findViewById(R.id.postCard_have);
-        final TextView iWantView = (TextView) injectionLocation.findViewById(R.id.postCard_want);
+        final ViewGroup tempInjectionLocation = (LinearLayout) this.findViewById(R.id.newPost_customRowInjectionLocation);
+        final TextView iHaveView = (TextView) tempInjectionLocation.findViewById(R.id.postCard_have);
+        final TextView iWantView = (TextView) tempInjectionLocation.findViewById(R.id.postCard_want);
         final EditText description = (EditText) findViewById(R.id.newPost_description);
 
         description.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                //before text changed
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //on text change
 
             }
 
@@ -176,6 +178,7 @@ public class NewPostActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
     protected void onStop()
     {
         super.onStop();

@@ -26,7 +26,7 @@ public class Post {
     private boolean isMan;
     private String longDescription;
 
-    public int demoTime;
+    int demoTime;
 
     static final String [] goods = new String [] {"Eggs", "Cereal", "Fruit", "Bagels", "Avocadoes", "Milk",
         "Plus Dollars", "Ice Cream", "Chocolate", "Tea", "Apple Juice", "Coke",

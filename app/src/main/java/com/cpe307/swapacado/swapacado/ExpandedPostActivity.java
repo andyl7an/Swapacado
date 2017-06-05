@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import java.util.Random;
 
 public class ExpandedPostActivity extends AppCompatActivity {
 
@@ -42,7 +43,8 @@ public class ExpandedPostActivity extends AppCompatActivity {
         {
             eggView.setImageResource(profileResource);
         }
-        float randomRating = (float) (0.5 * (1 + ((int)(Math.random() * 10))));
+        Random r = new Random();
+        float randomRating = (float) (0.5 * (1 + r.nextInt(10)));
         ratingView.setRating(randomRating);
         descriptionView.setText(description);
 

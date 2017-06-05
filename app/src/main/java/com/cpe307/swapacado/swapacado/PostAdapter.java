@@ -65,14 +65,14 @@ class CustomAdapter extends ArrayAdapter<Post>{
         contactButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dialog contact_popup = new Dialog(homeContext);
-                contact_popup.setContentView(R.layout.contact_layout);
-                contact_popup.show();
-                TextView textName = (TextView) contact_popup.findViewById(R.id.contactPopup_name);
-                TextView textPhone = (TextView) contact_popup.findViewById(R.id.contactPopup_phone);
-                TextView textEmail = (TextView) contact_popup.findViewById(R.id.contactPopup_email);
+                Dialog contactPopup = new Dialog(homeContext);
+                contactPopup.setContentView(R.layout.contact_layout);
+                contactPopup.show();
+                TextView textName = (TextView) contactPopup.findViewById(R.id.contactPopup_name);
+                TextView textPhone = (TextView) contactPopup.findViewById(R.id.contactPopup_phone);
+                TextView textEmail = (TextView) contactPopup.findViewById(R.id.contactPopup_email);
 
-                RatingBar ratingBar = (RatingBar) contact_popup.findViewById(R.id.contactPopup_rating);
+                RatingBar ratingBar = (RatingBar) contactPopup.findViewById(R.id.contactPopup_rating);
                 ratingBar.setIsIndicator(true);
                 float randomFloat = (float) (0.5 * (1 + ((int)(Math.random() * 10))));
                 ratingBar.setRating(randomFloat);
@@ -95,8 +95,6 @@ class CustomAdapter extends ArrayAdapter<Post>{
         swapButton.setTag(R.string.proposeVariable3, haveString);
         swapButton.setTag(R.string.proposeVariable4, wantString);
 
-//        String posterName = ((TextView) view.findViewById(R.id.postCard_name)).getText().toString();
-//        String posterDescription =(String) ((TextView) view.findViewById(R.id.postCard_name)).getTag();
                 swapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -58,6 +58,7 @@ public class PostDatabase {
         return theDummyPosts;
     }
 
+
     private static void timeSortDummyPosts() {
         Arrays.sort(theDummyPosts, new Comparator(){
             public int compare(Object o1, Object o2)
