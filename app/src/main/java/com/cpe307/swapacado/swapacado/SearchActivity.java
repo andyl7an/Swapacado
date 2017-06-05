@@ -6,21 +6,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
     protected String uniqueID = "123";
-    private boolean shouldRefreshList;
     public String searchItem;
     Spinner selector;
     ImageButton searchButton;
@@ -65,7 +60,6 @@ public class SearchActivity extends AppCompatActivity {
         int titleHeight = title.getLayoutParams().height;
 
         //Set the plus' height and width to the dimensions of the height of the title
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(titleHeight,titleHeight);
     }
 
     private void setSearchFilter()
@@ -82,10 +76,10 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent)
             {
-
+                //nothing selected
             }
         });
-        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         selector.setAdapter(categoryAdapter);
 
@@ -95,7 +89,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                PreformSearch();
+                preformSearch();
             }
         });
     }
@@ -105,7 +99,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        PopulateCategories();
+        populateCategories();
         attachMenuButtonHandlers();
         adjustTitleBar();
         setSearchFilter();
@@ -123,7 +117,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     // Populates the category drop-down with the same strings as the posts
-    private void PopulateCategories()
+    private void populateCategories()
     {
         categories = new String[]{"Eggs", "Cereal", "Fruit", "Bagels", "Avocadoes", "Milk",
                 "Plus Dollars", "Ice Cream", "Chocolate", "Tea", "Apple Juice", "Coke",
@@ -131,24 +125,25 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     // The on-ccheck listener for the "Haves" checkbox
-    public void CheckHaves(View View)
+    public void checkHaves(View view)
     {
         searchHaves = !searchHaves;
     }
 
     // The on-check listener for the "Wants" checkbox
-    public void CheckWants(View View)
+    public void checkWants(View view)
     {
         searchWants = !searchWants;
     }
 
     // This will filter based on the search criteria
-    private void PreformSearch()
+    private void preformSearch()
     {
         Post [] currentPosts = getPosts();
         ArrayList<Post> filtered = new ArrayList<>();
 
-        boolean canAddHave = false, canAddWant = false;
+        boolean canAddHave = false;
+        boolean canAddWant = false;
 
         for(Post aPost : currentPosts)
         {
