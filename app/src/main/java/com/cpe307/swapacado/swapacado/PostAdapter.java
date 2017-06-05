@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import java.util.Random;
 
 class CustomAdapter extends ArrayAdapter<Post>{
 
@@ -74,7 +75,8 @@ class CustomAdapter extends ArrayAdapter<Post>{
 
                 RatingBar ratingBar = (RatingBar) contactPopup.findViewById(R.id.contactPopup_rating);
                 ratingBar.setIsIndicator(true);
-                float randomFloat = (float) (0.5 * (1 + ((int)(Math.random() * 10))));
+                Random r = new Random();
+                float randomFloat = (float) (0.5 * (1 + r.nextInt(10)));
                 ratingBar.setRating(randomFloat);
 
                 textName.setText(name);
@@ -121,8 +123,8 @@ class CustomAdapter extends ArrayAdapter<Post>{
             public void onClick(View view) {
                 String nameString = ((TextView) view.findViewById(R.id.postCard_name)).getText().toString();
                 int profileResouurce = (Integer) ((ImageView) view.findViewById(R.id.postCard_egg)).getTag();
-                String iWantString = ((TextView) view.findViewById(R.id.postCard_want)).getText().toString();;
-                String iHaveString = ((TextView) view.findViewById(R.id.postCard_have)).getText().toString();;
+                String iWantString = ((TextView) view.findViewById(R.id.postCard_want)).getText().toString();
+                String iHaveString = ((TextView) view.findViewById(R.id.postCard_have)).getText().toString();
                 String description = (String) ((TextView) view.findViewById(R.id.postCard_name)).getTag();
 
                 Intent expandedPost = new Intent(homeContext, ExpandedPostActivity.class);

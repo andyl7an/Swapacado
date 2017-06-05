@@ -107,9 +107,9 @@ public class NewPostActivity extends AppCompatActivity {
         final EditText wantEdit = (EditText) findViewById(R.id.newPost_wantEditText);
         final EditText description = (EditText) findViewById(R.id.newPost_description);
 
-        boolean enabled = (!"".equals(haveEdit.getText().toString()) &&
+        boolean enabled = !"".equals(haveEdit.getText().toString()) &&
                 !"".equals(wantEdit.getText().toString()) &&
-                !"".equals(description.getText().toString()));
+                !"".equals(description.getText().toString());
 
         this.postButton = (Button) findViewById(R.id.newPost_postButton);
         this.postButton.setEnabled(enabled);

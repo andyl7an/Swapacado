@@ -70,9 +70,10 @@ public class ProposeSwapActivity extends AppCompatActivity {
         EditText text1 = (EditText) findViewById(R.id.propose_location);
         EditText text2 = (EditText) findViewById(R.id.propose_location);
         EditText text3 = (EditText) findViewById(R.id.propose_location);
-        boolean notSubmit = text1.getText().toString().equals("") ||
-                text2.getText().toString().equals("") ||
-                text3.getText().toString().equals("");
+
+        boolean notSubmit = "".equals(text1.getText().toString()) ||
+                "".equals(text2.getText().toString()) ||
+                "".equals(text3.getText().toString());
         submitButton.setEnabled(!notSubmit);
 
     }
