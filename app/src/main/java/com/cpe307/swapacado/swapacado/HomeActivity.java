@@ -87,6 +87,7 @@ public class HomeActivity extends AppCompatActivity {
         PostDatabase.refreshAllPosts();
 
         ListView myListView = (ListView) findViewById(R.id.home_listview);
+
         Post [] data = getPosts();
         myListView.setAdapter(new CustomAdapter(HomeActivity.this, data));
     }

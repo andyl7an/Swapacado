@@ -1,5 +1,7 @@
 package com.cpe307.swapacado.swapacado;
 
+import android.util.Log;
+
 import java.util.Calendar;
 import java.util.Random;
 
@@ -25,6 +27,18 @@ public class Post {
     private int nameIndex;
     private boolean isMan;
     private String longDescription;
+
+    public String kPrivateName;
+    public String kPrivateDistance;
+    public String kPrivateDate;
+    public String kPrivateWant;
+    public int kPrivateIndex;
+    public String kPrivateHave;
+    public String kPrivateFaceURL;
+    public int kPrivateNameIndex;
+    public boolean kPrivateIsMan;
+    public String kPrivateLongDescription;
+
 
     int demoTime;
 
@@ -187,24 +201,35 @@ public class Post {
         Random r = new Random();
         if(privateDate != null)
         {
+            String token = privateDate.trim();
+            String [] parsed = token.split(":");
+            String hourString = parsed[0];
+            String minuteString = parsed[1];
+            int hr = Integer.parseInt(hourString);
+            int min = Integer.parseInt(minuteString.substring(0,2));
+            if(token.indexOf("am") == -1)
+            {
+                hr += 12;
+            }
+            Calendar cal = Calendar.getInstance();
+            int timeNow = cal.get(Calendar.HOUR_OF_DAY) * 60 + cal.get(Calendar.MINUTE);
+            Log.d("Ahluwalia", "lol it is" + timeNow);
+            int minutesSinceMidnight = hr * 60 + min;
+
+            if(timeNow >= minutesSinceMidnight)
+            {
+                this.demoTime = timeNow - minutesSinceMidnight;
+            }
+            else
+            {
+                this.demoTime = 60 * 24 - (minutesSinceMidnight - timeNow);
+            }
             return privateDate;
         }
         String output = "";
         int hr = 8 + r.nextInt(12);
         int min =  r.nextInt(60);
 
-        Calendar cal = Calendar.getInstance();
-        int timeNow = cal.get(Calendar.HOUR_OF_DAY) * 60 + cal.get(Calendar.MINUTE);
-        int minutesSinceMidnight = hr * 60 + min;
-
-        if(timeNow >= minutesSinceMidnight)
-        {
-            this.demoTime = timeNow - minutesSinceMidnight;
-        }
-        else
-        {
-            this.demoTime = 60 * 24 - (minutesSinceMidnight - timeNow);
-        }
 
         if(hr < 12)
         {
@@ -367,4 +392,34 @@ public class Post {
     public String getDescription() {
         return longDescription;
     }
+
+    public void writePublics() {
+        this.kPrivateName = privateName;
+        this.kPrivateDistance = privateDistance;
+        this.kPrivateDate = privateDate;
+        this.kPrivateWant = privateWant;
+        this.kPrivateIndex = index;
+        this.kPrivateHave =  privateHave;
+        this.kPrivateFaceURL = faceURL;
+        this.kPrivateNameIndex = nameIndex;
+        this.kPrivateIsMan = isMan;
+        this.kPrivateLongDescription = longDescription;
+        getPostTimeString();
+
+    }
+
+    public void publicsToPrivate() {
+        this.privateName = kPrivateName;
+        this.privateDistance = kPrivateDistance;
+        this.privateDate = kPrivateDate;
+        this.privateWant = kPrivateWant;
+        this.index = kPrivateIndex;
+        this.privateHave = kPrivateHave;
+        this.faceURL = kPrivateFaceURL;
+        this.nameIndex = kPrivateNameIndex;
+        this.isMan = kPrivateIsMan;
+        this.longDescription = kPrivateLongDescription;
+        getPostTimeString();
+    }
+
 }
