@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:onClick="CheckHaves"
+            android:onClick="checkHaves"
             android:text="Those Who Have..."
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
 
@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:onClick="CheckWants"
+            android:onClick="checkWants"
             android:text="Those Who Want..."
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
     </LinearLayout>
