@@ -89,6 +89,10 @@ public class PostDatabase {
 
 
     public static void demoAdd(Post toAdd) {
+        if(toAdd == null)
+        {
+            return;
+        }
         toAdd.writePublics();
         Post [] oldPosts = getAllPostsDummy();
         Post [] newPosts = new Post [oldPosts.length + 1];
