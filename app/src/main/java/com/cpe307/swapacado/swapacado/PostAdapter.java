@@ -27,6 +27,19 @@ class CustomAdapter extends ArrayAdapter<Post>{
         homeContext = context;
     }
 
+    public void editText(TextView textName, TextView textPhone, TextView textEmail, String name, RatingBar ratingBar){
+        ratingBar.setIsIndicator(true);
+        Random r = new Random();
+        float randomFloat = (float) (0.5 * (1 + r.nextInt(10)));
+        ratingBar.setRating(randomFloat);
+        textName.setText(name);
+        textName.setTextSize(42);
+        textPhone.setText("425.985.4894");
+        textPhone.setTextSize(30);
+        textEmail.setText(name+"@calpoly.edu");
+        textEmail.setTextSize(30);
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater myInflater = LayoutInflater.from(this.getContext());
@@ -72,19 +85,8 @@ class CustomAdapter extends ArrayAdapter<Post>{
                 TextView textName = (TextView) contactPopup.findViewById(R.id.contactPopup_name);
                 TextView textPhone = (TextView) contactPopup.findViewById(R.id.contactPopup_phone);
                 TextView textEmail = (TextView) contactPopup.findViewById(R.id.contactPopup_email);
-
                 RatingBar ratingBar = (RatingBar) contactPopup.findViewById(R.id.contactPopup_rating);
-                ratingBar.setIsIndicator(true);
-                Random r = new Random();
-                float randomFloat = (float) (0.5 * (1 + r.nextInt(10)));
-                ratingBar.setRating(randomFloat);
-
-                textName.setText(name);
-                textName.setTextSize(42);
-                textPhone.setText("425.985.4894");
-                textPhone.setTextSize(30);
-                textEmail.setText(name+"@calpoly.edu");
-                textEmail.setTextSize(30);
+                editText(textName, textPhone, textEmail, name, ratingBar);
             }
         });
         Button swapButton = (Button) theActualView.findViewById(R.id.postCard_swap);

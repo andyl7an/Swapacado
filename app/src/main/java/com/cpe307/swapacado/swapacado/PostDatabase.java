@@ -21,6 +21,7 @@ import java.util.List;
 
 public class PostDatabase {
     static final String DBNAME = "AllPostsV2";
+    static final String TAG = "Ahluwalia";
     //THIS LIST WILL KEEP TRACK OF ALL THE POSTS
     static List<Post> allPosts = new ArrayList<> ();
     //Later on implement a final List that keeps tracks of diffs and pushes updates
@@ -30,16 +31,6 @@ public class PostDatabase {
         throw new IllegalAccessError("Utility class");
     }
 
-//    public static void init()
-//    {
-//        FirebaseDatabase dbInstance = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = dbInstance.getReference(DBNAME);
-//
-//        allPosts = new ArrayList<>();
-//        Post samplePost = Post.createPost("123", true, "i want", "i have");
-//        allPosts.add(samplePost);
-//        myRef.setValue(allPosts);
-//    }
     public static List <Post> getAllPosts()
     {
         return new ArrayList<>(allPosts);
@@ -48,21 +39,7 @@ public class PostDatabase {
     {
         if(theDummyPosts == null)
         {
-            /*
-            theDummyPosts = new Post[85];
-            for(int ind = 0; ind < theDummyPosts.length; ind++)
-            {
-                theDummyPosts[ind] = Post.createPost("",false,"","");
-                theDummyPosts[ind].writePublics();
-            }
-            */
             refreshAllPosts();
-//            theDummyPosts = new Post[allPosts.size()];
-//            timeSortDummyPosts();
-//            FirebaseDatabase dbInstance = FirebaseDatabase.getInstance();
-//            DatabaseReference myRef = dbInstance.getReference(DBNAME);
-//            List <Post> testPosts = Arrays.asList(theDummyPosts);
-//            myRef.setValue(testPosts);
         }
         timeSortDummyPosts();
         return theDummyPosts;
@@ -87,14 +64,13 @@ public class PostDatabase {
     {
         FirebaseDatabase dbInstance = FirebaseDatabase.getInstance();
         DatabaseReference myRef = dbInstance.getReference(DBNAME);
-        final String tag = "Ahluwalia";
         myRef.addValueEventListener(new ValueEventListener() {
             //Called every time the data in the db changes
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<List<Post>> t = new GenericTypeIndicator<List<Post>>() {};
                 List<Post> updatedList = dataSnapshot.getValue(t);
-                Log.d(tag, "Updated db to: " + updatedList.size());
+                Log.d(TAG, "Updated db to: " + updatedList.size());
                 allPosts = updatedList;
                 theDummyPosts = new Post[allPosts.size()];
                 for(int ind = 0; ind < allPosts.size(); ind++)
@@ -106,42 +82,11 @@ public class PostDatabase {
             }
             @Override
             public void onCancelled(DatabaseError error) {
-                Log.w(tag, "Failed to read value.", error.toException());
+                Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
     }
-//    public static List<Post> getWantPosts()
-//    {
-//        final ArrayList<Post> wantsOnly = new ArrayList<>();
-//        for(Post p : allPosts)
-//        {
-//            if(p.isWant)
-//            {
-//                wantsOnly.add(p);
-//            }
-//        }
-//        return wantsOnly;
-//    }
-//    public static List<Post> getHasPosts()
-//    {
-//        final ArrayList<Post> hasOnly = new ArrayList<>();
-//        for(Post p : allPosts)
-//        {
-//            if(p.isWant)
-//            {
-//                hasOnly.add(p);
-//            }
-//        }
-//        return hasOnly;
-////    }
-//    public static boolean addPost(Post p)
-//    {
-//        allPosts.add(p);
-//        FirebaseDatabase dbInstance = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = dbInstance.getReference(DBNAME);
-//        myRef.setValue(allPosts);
-//        return true;
-//    }
+
 
     public static void demoAdd(Post toAdd) {
         toAdd.writePublics();
@@ -149,7 +94,7 @@ public class PostDatabase {
         Post [] newPosts = new Post [oldPosts.length + 1];
         newPosts[0] = toAdd;
 
-        Log.d("Ahluwalia", "Before add: " + oldPosts.length);
+        Log.d(TAG, "Before add: " + oldPosts.length);
         for(int ind = 0; ind < oldPosts.length; ind++)
         {
             newPosts[ind+1] = oldPosts[ind];
@@ -160,6 +105,6 @@ public class PostDatabase {
         List <Post> testPosts = Arrays.asList(theDummyPosts);
         myRef.setValue(testPosts);
 
-        Log.d("Ahluwalia", "After add: " + newPosts.length);
+        Log.d(TAG, "After add: " + newPosts.length);
     }
 }

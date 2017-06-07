@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity {
 
     protected String uniqueID = "123";
+    static final String UID = "uniqueID";
     private boolean shouldRefreshList;
 
     //Make the buttons at the bottom of the screen active
@@ -41,7 +42,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-                intent.putExtra("uniqueID", uniqueID);
+                intent.putExtra(UID, uniqueID);
                 startActivity(intent);
                 finish();
             }
@@ -56,7 +57,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, NewPostActivity.class);
                 shouldRefreshList = true;
-                intent.putExtra("uniqueID", uniqueID);
+                intent.putExtra(UID, uniqueID);
                 startActivity(intent);
             }
         });
@@ -79,7 +80,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        uniqueID = this.getIntent().getStringExtra("uniqueID");
+        uniqueID = this.getIntent().getStringExtra(UID);
 
         attachMenuButtonHandlers();
         adjustTitleBar();

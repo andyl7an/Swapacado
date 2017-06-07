@@ -17,6 +17,8 @@ import java.util.Random;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -134,6 +136,8 @@ public class ProfileActivity extends AppCompatActivity {
             } catch(Exception ex) {
                 Log.d("Ahluwalia", "Exception with network request!!!");
                 Log.d("Ahluwalia", ex.toString());
+                Logger l = Logger.getAnonymousLogger();
+                l.log(Level.WARNING, "Post Listener Exception", ex);
                 return null;
             }
         }

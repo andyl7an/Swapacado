@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class SearchActivity extends AppCompatActivity {
 
     protected String uniqueID = "123";
-    public String searchItem;
+    String searchItem;
     Spinner selector;
     ImageButton searchButton;
     boolean searchHaves;
@@ -55,10 +55,6 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void adjustTitleBar() {
-        View title = this.findViewById(R.id.searchTitle);
-
-        int titleHeight = title.getLayoutParams().height;
-
         //Set the plus' height and width to the dimensions of the height of the title
     }
 

@@ -11,11 +11,11 @@ import java.util.Random;
  */
 
 public class Post {
-    public String posterId;
-    public boolean isWant;
-    public String wantString;
-    public String hasString;
-    public long epochTime;
+    String posterId;
+    boolean isWant;
+    String wantString;
+    String hasString;
+    long epochTime;
 
     private String privateName;
     private String privateDistance;
@@ -28,16 +28,16 @@ public class Post {
     private boolean isMan;
     private String longDescription;
 
-    public String kPrivateName;
-    public String kPrivateDistance;
-    public String kPrivateDate;
-    public String kPrivateWant;
-    public int kPrivateIndex;
-    public String kPrivateHave;
-    public String kPrivateFaceURL;
-    public int kPrivateNameIndex;
-    public boolean kPrivateIsMan;
-    public String kPrivateLongDescription;
+    String kPrivateName;
+    String kPrivateDistance;
+    String kPrivateDate;
+    String kPrivateWant;
+    int kPrivateIndex;
+    String kPrivateHave;
+    String kPrivateFaceURL;
+    int kPrivateNameIndex;
+    boolean kPrivateIsMan;
+    String kPrivateLongDescription;
 
 
     int demoTime;
@@ -68,15 +68,16 @@ public class Post {
         return p;
     }
     public static Post newPostDemo(String privateName, String privateDistance, String privateDate,
-        String privateWant, String privateHave, boolean isMan, String longDescription, int nameIndex)
+        String privateWant, String privateHave,  String longDescription, int nameIndex)
     {
+        Random rand = new Random();
         Post p = new Post();
         p.privateName = privateName;
         p.privateDistance = privateDistance;
         p.privateDate = privateDate;
         p.privateWant = privateWant;
         p.privateHave = privateHave;
-        p.isMan = isMan;
+        p.isMan = rand.nextBoolean();
         p.longDescription = longDescription;
         p.nameIndex = nameIndex;
         return p;
@@ -226,49 +227,34 @@ public class Post {
             }
             return privateDate;
         }
-        String output = "";
+        String output;
         int hr = 8 + r.nextInt(12);
         int min =  r.nextInt(60);
 
-
-        if(hr < 12)
-        {
+        if (hr < 12){
             output = hr + ":";
-            if(min < 10)
-            {
-                output = output + "0" + min;
-            }
-            else
-            {
-                output = output + min;
-            }
-            output += " am";
         }
-        else if(hr == 12)
-        {
+        else if (hr == 12){
             output = "12:";
-            if(min < 10)
-            {
-                output = output + "0" + min;
-            }
-            else
-            {
-                output = output + min;
-            }
-            output += " pm";
+        }
+        else{
+            hr -= 12;
+            output = hr + ":";
+        }
+        if(min < 10)
+        {
+            output = output + "0" + min;
         }
         else
         {
-            hr -= 12;
-            output = hr + ":";
-            if(min < 10)
-            {
-                output = output + "0" + min;
-            }
-            else
-            {
-                output = output + min;
-            }
+            output = output + min;
+        }
+        if(hr < 12)
+        {
+            output += " am";
+        }
+        else
+        {
             output += " pm";
 
         }

@@ -14,12 +14,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class NewPostActivity extends AppCompatActivity {
 
-    private Button postButton;
     ViewGroup injectionLocation;
     EditText iHaveEditText;
     EditText iWantEditText;
@@ -79,22 +81,20 @@ public class NewPostActivity extends AppCompatActivity {
         tempPostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                toasted = true;
                 try {
                     String privateDate = ((TextView) injectionLocation.findViewById(R.id.postCard_postDate)).getText().toString();
                     String longDescription = descriptionEditText.getText().toString();
                     String privateWant = "I want: " + iWantEditText.getText().toString();
                     String privateHave = "I have: " + iHaveEditText.getText().toString();
-                    Post toAdd = Post.newPostDemo("Davide", "0.0 miles", privateDate,
-                        privateWant, privateHave, true, longDescription, 0);
+                    Post toAdd = Post.newPostDemo("Davide", "0.0 miles", privateDate, privateWant, privateHave, longDescription, 0);
                     PostDatabase.demoAdd(toAdd);
-                    toasted = true;
                     Toast.makeText(NewPostActivity.this, "Post Submitted!", Toast.LENGTH_LONG).show();
-                }
-                catch(Exception ex)
-                {
+                }catch(Exception ex){
                     Toast.makeText(NewPostActivity.this, "System error, post not submitted!", Toast.LENGTH_LONG).show();
                     Log.d("Ahluwalia", ex.toString());
-                    toasted = true;
+                    Logger l = Logger.getAnonymousLogger();
+                    l.log(Level.WARNING, "Post Listener Exception", ex);
                 }
                 finish();
             }
@@ -103,6 +103,7 @@ public class NewPostActivity extends AppCompatActivity {
 
     public void togglePostButtonEnabled()
     {
+        Button postButton;
         final EditText haveEdit = (EditText) findViewById(R.id.newPost_haveEditText);
         final EditText wantEdit = (EditText) findViewById(R.id.newPost_wantEditText);
         final EditText description = (EditText) findViewById(R.id.newPost_description);
@@ -111,8 +112,8 @@ public class NewPostActivity extends AppCompatActivity {
                 !"".equals(wantEdit.getText().toString()) &&
                 !"".equals(description.getText().toString());
 
-        this.postButton = (Button) findViewById(R.id.newPost_postButton);
-        this.postButton.setEnabled(enabled);
+        postButton = (Button) findViewById(R.id.newPost_postButton);
+        postButton.setEnabled(enabled);
 
 
     }

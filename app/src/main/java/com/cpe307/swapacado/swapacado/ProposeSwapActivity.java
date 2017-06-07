@@ -42,12 +42,12 @@ public class ProposeSwapActivity extends AppCompatActivity {
         TextWatcher watcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                //before text change
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                //on text change
             }
 
             @Override
