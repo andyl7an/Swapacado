@@ -421,5 +421,4 @@ public class Post {
         this.longDescription = kPrivateLongDescription;
         getPostTimeString();
     }
-
 }
